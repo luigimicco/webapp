@@ -1,0 +1,3 @@
+<p>
+    {{$lead->message}}
+</p>
