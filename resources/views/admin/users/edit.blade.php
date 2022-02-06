@@ -15,7 +15,7 @@
 
         <div class="card card-primary card-outline direct-chat direct-chat-primary">
             <div class="card-header">
-                <h3 class="card-title"><strong>{{ $user->name }}</strong></h3>
+                <h3 class="card-title"><strong>{{ $user->nome . ' ' . $user->cognome }}</strong></h3>
 
                 <div class="card-tools">
                     <button class="btn btn-sm btn-success" type="submit"><i class="fas fa-save"></i>&nbsp;Conferma</button>

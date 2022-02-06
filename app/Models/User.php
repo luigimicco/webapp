@@ -47,6 +47,12 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Role')->withTimestamps();
     }   
     
+    public function profiles() {
+        return $this->belongsToMany('App\Models\Profiles');
+    }
+
+
+    // for AdminLte 
     public function adminlte_image()
     {
         $id = Auth::user()->email;
@@ -62,7 +68,7 @@ class User extends Authenticatable
     {
         return "#";
     } 
-
+   
     public function gate($can)
     {
       

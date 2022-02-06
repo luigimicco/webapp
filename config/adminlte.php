@@ -536,7 +536,12 @@ return [
             'url'  => 'admin/users', 
             'can' => 'menu-admin'           
         ],
-
+        [
+            'text'        => 'Profili',
+            'icon'        => 'fas fa-fw fa-id-badge',
+            'url'  => 'admin/profiles', 
+            'can' => 'menu-admin'           
+        ],
 
 
 /*

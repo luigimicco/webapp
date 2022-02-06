@@ -1,9 +1,10 @@
 <?php
 
+use App\Models\User;
 use App\Models\Role;
+use App\Models\Profile;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
-use App\Models\User;
 use Illuminate\Support\Arr;
 
 class UsersTableSeeder extends Seeder
@@ -16,7 +17,6 @@ class UsersTableSeeder extends Seeder
     public function run(Faker $faker)
     {
 
-
         $new_user = new User();
         $new_user->nome = 'admin';
         $new_user->cognome = 'admin';
@@ -25,6 +25,7 @@ class UsersTableSeeder extends Seeder
         $new_user->active = true;
         $new_user->save();
         $new_user->roles()->attach(1);
+        $new_user->profiles()->attach(1);
 
         $new_user = new User();
         $new_user->nome = 'Mario';
@@ -34,10 +35,23 @@ class UsersTableSeeder extends Seeder
         $new_user->active = true;
         $new_user->save();
         $new_user->roles()->attach(2);
+        $new_user->profiles()->attach(2);
+
+        $new_user = new User();
+        $new_user->nome = 'Luigi';
+        $new_user->cognome = 'Bianchi';  
+        $new_user->email = 'cliente@cartesio.it';
+        $new_user->password = bcrypt('password');
+        $new_user->active = true;
+        $new_user->save();
+        $new_user->roles()->attach(3);
+        $new_user->profiles()->attach(4);
 
 
         $roles_id = Role::pluck('id')->toArray();
         unset($roles_id[0]);  // i casuali non possono essere admin
+        $profiles_id = Profile::pluck('id')->toArray();
+        unset($profiles_id[0]);  // i casuali non possono avere il profilo completo
 
         for ($i = 0; $i < 15; $i++) {
             $new_user = new User();
@@ -49,6 +63,7 @@ class UsersTableSeeder extends Seeder
             $new_user->save();
 
             $new_user->roles()->attach(Arr::random($roles_id));
+            $new_user->profiles()->attach(Arr::random($profiles_id));
         }
 
     }
