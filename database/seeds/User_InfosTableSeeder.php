@@ -1,8 +1,8 @@
 <?php
 
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use App\UserInfo;
+use App\Models\UserInfo;
 use Faker\Generator as Faker;
 
 class User_InfosTableSeeder extends Seeder
@@ -19,10 +19,9 @@ class User_InfosTableSeeder extends Seeder
         for ($i = 0; $i < count($users); $i++) {
             $new_UserInfo = new UserInfo();
             $new_UserInfo->user_id = $i + 1;
-            $new_UserInfo->address = 'Via inventata';
-            // $faker->address();
-            $new_UserInfo->phone = $faker->phoneNumber();
-            $new_UserInfo->country = 'USA';
+            $new_UserInfo->ruolo = $faker->text(50);
+            $new_UserInfo->costo_orario = rand(1, 1000)/100;
+
             $new_UserInfo->save();
         }
     }

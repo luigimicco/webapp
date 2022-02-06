@@ -26,13 +26,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/', 'PrivateController@index')->name('home');
+
 Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
     //! Admin Home
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('acp');
     //! Users
-    Route::get('/users', 'UserController@index')->name('users.index');
-    Route::get('/users/{user}/edit', 'UserController@edit')->name('users.edit');
-    Route::patch('/users/{user}', 'UserController@update')->name('users.update');
+    Route::resource('/users', 'UserController');    
 /*
     //! Posts res
     Route::resource('/posts', 'PostController');

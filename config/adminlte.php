@@ -31,7 +31,7 @@ return [
     */
 
     'use_ico_only' => false,
-    'use_full_favicon' => false,
+    'use_full_favicon' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -65,11 +65,11 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => false,
-    'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-default',
+    'usermenu_image' => true,
+    'usermenu_desc' => true,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -128,7 +128,7 @@ return [
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_sidebar_nav' => '',
+    'classes_sidebar_nav' => 'nav-child-indent nav-compact',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
@@ -148,7 +148,7 @@ return [
     'sidebar_mini' => 'lg',
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
-    'sidebar_collapse_remember' => false,
+    'sidebar_collapse_remember' => true,
     'sidebar_collapse_remember_no_transition' => true,
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -225,12 +225,14 @@ return [
     */
 
     'menu' => [
+/*        
         // Navbar items:
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => true,
         ],
+*/        
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
@@ -238,9 +240,311 @@ return [
 
         // Sidebar items:
         [
+            'text'        => 'Archivi',
+            'icon'        => 'fas fa-fw fa-database',
+            'submenu' => [
+                [
+                    'text' => 'Clienti',
+                    'icon'        => 'fas fa-fw fa-users',
+                    'url'  => '#',
+                ],            
+                [
+                    'text' => 'Fornitori',
+                    'icon'        => 'fas fa-fw fa-users',
+                    'url'  => '#',
+                ],                   
+            ],
+        ],
+
+
+        [
+            'text'        => 'Accettazione',
+            'icon'        => 'far fa-fw fa-file',
+            'submenu' => [
+                [
+                    'text' => 'Accettazione',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],            
+                [
+                    'text' => 'Gestione contratti',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],            
+                [
+                    'text' => 'Altre attività',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],    
+                [
+                    'text' => 'Modifica accettazione',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],                            
+            ],            
+        ],
+
+        [
+            'text'        => 'Segreteria',
+            'icon'        => 'far fa-fw fa-file',
+            'submenu' => [
+                [
+                    'text' => '7.3 Plan campionamenti',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],            
+                [
+                    'text' => 'Protocollo',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],   
+                [
+                    'text' => 'Gestione clienti',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],   
+                [
+                    'text' => 'Tariffario',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],                                            
+            ],            
+        ],
+
+        [
+            'text'        => 'Acquisti',
+            'icon'        => 'far fa-fw fa-file',
+            'submenu' => [
+                [
+                    'text' => '6.6 Getione acquisti',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],            
+                [
+                    'text' => '6.6. Gestione fornitori e lab est.',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],   
+                [
+                    'text' => 'Richiesta preventivi',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],   
+                [
+                    'text' => 'Consumi',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],                                            
+            ],            
+        ],
+
+        [
+            'text'        => 'Amministrazione',
+            'icon'        => 'far fa-fw fa-file',
+            'submenu' => [
+                [
+                    'text' => 'Protocollo',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],  
+                [
+                    'text' => 'Controllo di gestione',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],  
+                [
+                    'text' => 'Bilancio laboratorio',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],  
+                [
+                    'text' => 'Statistiche',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],  
+                ['header' => 'Fornitori'],
+                [
+                    'text' => 'Registrazione fatture',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],  
+                [
+                    'text' => 'Elenco fatture',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],  
+                [
+                    'text' => 'Scadenziario',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],  
+                ['header' => 'Clienti'],
+                [
+                    'text' => 'Elenco fatture',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],  
+                [
+                    'text' => 'Scadenziario',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],  
+                [
+                    'text' => 'Solleciti pagamenti',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],  
+            ],            
+        ],
+
+
+        [
+            'text'        => 'Laboratorio',
+            'icon'        => 'far fa-fw fa-file',
+            'submenu' => [
+                [
+                    'text' => '7.3 Plan campionamenti',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ], 
+                [
+                    'text' => '8.2 Distribuzioni documenti',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Metodi chimici',
+                            'icon'        => 'far fa-fw fa-file',
+                            'url'  => '#',
+                        ], 
+                        [
+                            'text' => 'Metodi microbiologia',
+                            'icon'        => 'far fa-fw fa-file',
+                            'url'  => '#',
+                        ], 
+                        [
+                            'text' => 'Procedure tecniche',
+                            'icon'        => 'far fa-fw fa-file',
+                            'url'  => '#',
+                        ],         
+                        [
+                            'text' => 'Istruzioni operative',
+                            'icon'        => 'far fa-fw fa-file',
+                            'url'  => '#',
+                        ],         
+                        [
+                            'text' => 'Doc. prescrittivi',
+                            'icon'        => 'far fa-fw fa-file',
+                            'url'  => '#',
+                        ],         
+                    ],    
+                ], 
+                [
+                    'text' => 'Algoritmi di calcolo',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],                 
+                [
+                    'text' => 'Valutazioni scorte',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],  
+                [
+                    'text' => 'Gestione manutenzioni',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],   
+                [
+                    'text' => '6.5 Materiale di riferimento',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Materiali certificati',
+                            'icon'        => 'far fa-fw fa-file',
+                            'url'  => '#',
+                        ],                    
+                        [
+                            'text' => 'Campioni di riferimento',
+                            'icon'        => 'far fa-fw fa-file',
+                            'url'  => '#',
+                        ],                    
+                    ],                                  
+                ], 
+                [
+                    'text' => 'Preparati',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',                
+                    'submenu' => [
+                        [
+                            'text' => 'di chimica',
+                            'icon'        => 'far fa-fw fa-file',
+                            'url'  => '#',
+                        ],                    
+                        [
+                            'text' => 'di micro',
+                            'icon'        => 'far fa-fw fa-file',
+                            'url'  => '#',
+                        ],                    
+                    ],                  
+                ], 
+                [
+                    'text' => '7.7 Ring test',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',                
+                    'submenu' => [
+                        [
+                            'text' => 'di chimica',
+                            'icon'        => 'far fa-fw fa-file',
+                            'url'  => '#',
+                        ],                    
+                        [
+                            'text' => 'di micro',
+                            'icon'        => 'far fa-fw fa-file',
+                            'url'  => '#',
+                        ],                    
+                    ],                  
+                ],
+                [
+                    'text' => 'Recupero test di ripetibilità',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ], 
+                [
+                    'text' => 'Trans codifica',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],  
+                [
+                    'text' => 'Importa da strumento',
+                    'icon'        => 'far fa-fw fa-file',
+                    'url'  => '#',
+                ],                                                                                   
+            ],            
+        ],
+
+
+
+
+        [
+            'header' => 'CONFIGURAZIONE',
+            'can' => 'menu-admin'
+        ],
+        [
+            'text'        => 'Utenti',
+            'icon'        => 'fas fa-fw fa-users',
+            'url'  => 'admin/users', 
+            'can' => 'menu-admin'           
+        ],
+
+
+
+/*
+        [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
+       
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -318,6 +622,7 @@ return [
             'icon_color' => 'cyan',
             'url'        => '#',
         ],
+*/ 
     ],
 
     /*

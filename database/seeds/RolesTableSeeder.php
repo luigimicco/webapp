@@ -14,7 +14,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $roles_name = ['admin', 'user', 'guest'];
+        $roles_name = ['admin', 'utente', 'cliente'];
         foreach ($roles_name as $role) {
             $new_role = new Role();
             $new_role->name = $role;
