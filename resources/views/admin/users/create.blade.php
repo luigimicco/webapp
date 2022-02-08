@@ -96,6 +96,46 @@
                 </div>
             </div>
 
+            {{-- ruoli dell'utente --}}
+            <div class="form-group">
+                <p>Seleziona i ruoli:</p>
+                @foreach ($roles as $role)
+                    <div class="form-check @error('roles') is-invalid @enderror">
+                        <label class="form-check-label">
+                            <input name="roles[]"
+                                class="form-check-input" type="checkbox"
+                                value="{{ $role->id }}"
+                                {{ in_array($role->id, old('roles', [])) ? 'checked' : '' }}>
+                            {{ $role->name }}
+                        </label>
+                    </div>
+                @endforeach
+                @error('roles')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            {{-- profili dell'utente --}}
+            <div class="form-group">
+                <p>Seleziona i profili:</p>
+                @foreach ($profiles as $profile)
+                    <div class="form-check @error('profiles') is-invalid @enderror">
+                        <label class="form-check-label">
+                            <input name="profiles[]"
+                                class="form-check-input" type="checkbox"
+                                value="{{ $profile->id }}"
+                                {{ in_array($profile->id, old('profiles', [])) ? 'checked' : '' }}>
+                            {{ $profile->name }}
+                        </label>
+                    </div>
+                @endforeach
+                @error('profiles')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+
+
             <button type="submit" class="btn btn-success">Invia</button>
         </form>
         <div class="d-flex justify-content-end mt-3">

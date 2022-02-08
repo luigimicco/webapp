@@ -7,6 +7,8 @@
 @stop
 
 @section('content')
+
+
     {{-- alert delete post --}}
     @if (session('alert-message'))
         <div class="alert alert-{{ session('alert-type') }}">
@@ -15,9 +17,11 @@
     @endif
     <div class="container">
         <div class="card">
-            <div class="card-header d-flex justify-content-end align-items-center p-2">
-                {{ $profiles->links() }}&nbsp;
-                <a class="btn btn-sm btn-info" href="{{ route('admin.profiles.create') }}"><i class="fas fa-plus"></i>&nbsp;Nuovo profilo</a>
+            <div class="card-header d-flex justify-content-end p-2">
+                <div>
+                    {{ $profiles->links() }}&nbsp;
+                    <a class="btn btn-sm btn-info" href="{{ route('admin.profiles.create') }}"><i class="fas fa-plus"></i>&nbsp;Nuovo profilo</a>
+                </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
@@ -61,6 +65,9 @@
             @endif            
             </div>
             <!-- /.card-body -->
+            <div class="card-footer text-right">
+                {{$profiles->count()}} profili di {{ $profiles->total() }}
+            </div>
         </div>
 
     </div>

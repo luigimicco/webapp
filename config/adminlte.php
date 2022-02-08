@@ -87,7 +87,7 @@ return [
     'layout_boxed' => null,
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
-    'layout_fixed_footer' => null,
+    'layout_fixed_footer' => ['xs' => false, 'md' => true, 'xl' => true, 'lg' => true],
     'layout_dark_mode' => null,
 
     /*
@@ -225,6 +225,25 @@ return [
     */
 
     'menu' => [
+        [
+            'text'        => 'Info',
+            'icon'        => 'fas fa-fw fa-info',
+            'url'  => '#', 
+            'topnav' => true,
+            'data' => [
+                'toggle' => "modal",
+                'target' => "#modalCustom",
+            ]
+        ],
+        [
+            'type'         => 'darkmode-widget',
+            'topnav_right' => true, // Or "topnav => true" to place on the left.
+        ],
+        [
+            'type' => 'sidebar-menu-search',
+            'text' => 'cerca ...',           // Placeholder for the underlying input.
+            'id'   => 'sidebarMenuSearch' // ID attribute for the underlying input (optional).
+        ],        
 /*        
         // Navbar items:
         [
@@ -711,7 +730,7 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

@@ -6,9 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Kyslik\ColumnSortable\Sortable;
+
 class User extends Authenticatable
 {
     use Notifiable;
+    use Sortable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +22,8 @@ class User extends Authenticatable
         'nome', 'cognome', 'email', 'password', 'active'
     ];
 
+    public $sortable = ['id', 'nome', 'email', 'active'];
+        
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -48,7 +53,7 @@ class User extends Authenticatable
     }   
     
     public function profiles() {
-        return $this->belongsToMany('App\Models\Profiles');
+        return $this->belongsToMany('App\Models\Profile');
     }
 
 
@@ -66,7 +71,7 @@ class User extends Authenticatable
     
     public function adminlte_profile_url()
     {
-        return "#";
+        return "/profile";
     } 
    
     public function gate($can)

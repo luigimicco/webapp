@@ -33,6 +33,23 @@
                 <p>Nome: <strong>{{ $user->nome }}</strong></p>
                 <p>Cognome: <strong>{{ $user->cognome }}</strong></p>
                 <p>Email: <strong>{{ $user->email }}</strong></p>
+                <dt>Ruoli</dt>
+                <dd>
+                    @forelse ($user->roles as $role)
+                        {{ $role->name }}{{ !$loop->last ? ',' : '' }}
+                    @empty
+                        -
+                    @endforelse
+                </dd>                
+                <dt>Profili</dt>
+                <dd>
+                    @forelse ($user->profiles as $profile)
+                        {{ $profile->name }}{{ !$loop->last ? ',' : '' }}
+                    @empty
+                        -
+                    @endforelse
+                </dd>
+
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

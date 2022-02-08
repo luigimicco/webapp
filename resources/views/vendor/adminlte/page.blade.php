@@ -33,6 +33,9 @@
             @include('adminlte::partials.cwrapper.cwrapper-iframe')
         @endempty
 
+        {{-- Modal about --}}
+        @yield('about')
+
         {{-- Footer --}}
         @hasSection('footer')
             @include('adminlte::partials.footer.footer')

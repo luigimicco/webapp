@@ -2,8 +2,6 @@
 
 use App\Models\Profile;
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
-
 
 class ProfilesTableSeeder extends Seeder
 {
@@ -12,7 +10,7 @@ class ProfilesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
         $profiles_name = ['completo', 'accettazione', 'laboratorio', 'cliente'];
         foreach ($profiles_name as $profile) {
@@ -23,3 +21,4 @@ class ProfilesTableSeeder extends Seeder
         }
     }
 }
+

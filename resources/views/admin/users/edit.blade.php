@@ -64,14 +64,65 @@
 
                     </div>
                     <div class="col-6">
-                        <div class="d-flex flex-column">
-                        @foreach ($roles as $role)
-                        <div class="icheck-primary">
-                            <input type="checkbox" @if (in_array($role->id, $roleIds)) checked @endif id="role-{{$role->id}}"  value="{{$role->id}}"  name="roles[]">
-                            <label for="role-{{$role->id}}">{{$role->name}}</label>
+
+
+
+    
+                        {{-- ruoli dell'utente --}}
+                        <div class="form-group">
+                            <p>Seleziona i ruoli:</p>
+                            @foreach ($roles as $role)
+                                <div class="form-check @error('roles') is-invalid @enderror">
+                                    <div class="icheck-primary">
+                                        @if($errors->any())
+                                            {{-- se ci sono degli errori di validazione signifca che bisogna recuperare i role selezionati tramite la funzione old(), la quale restituisce un array plain --}}
+                                            <input name="roles[]" type="checkbox" value="{{ $role->id }}" id="role-{{$role->id}}"
+                                                {{ in_array($role->id, old('roles', [])) ? 'checked' : '' }}>
+
+                                        @else
+                                            {{-- se non sono presenti errori di validazione significa che la pagina è appena stata aperta per la prima volta, perciò bisogna recuperare i role dalla relazione con il post, che è una collection --}}
+                                            <input name="roles[]" type="checkbox" value="{{ $role->id }}" id="role-{{$role->id}}"
+                                                {{ $user->roles->contains($role) ? 'checked' : '' }}>
+                                        @endif
+                                        <label for="role-{{$role->id}}" >{{ $role->name }}</label>
+                                    </div>
+
+                                </div>
+                            @endforeach
+                            @error('roles')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-                        @endforeach
+
+
+                        {{-- profili dell'utente --}}
+                        <div class="form-group">
+                            <p>Seleziona i profili:</p>
+                            @foreach ($profiles as $profile)
+                                <div class="form-check @error('profiles') is-invalid @enderror">
+                                    <div class="icheck-primary">
+                                        @if($errors->any())
+                                            {{-- se ci sono degli errori di validazione signifca che bisogna recuperare i profile selezionati tramite la funzione old(), la quale restituisce un array plain --}}
+                                            <input name="profiles[]" type="checkbox" value="{{ $profile->id }}"  id="profile-{{$profile->id}}"
+                                                {{ in_array($profile->id, old('profiles', [])) ? 'checked' : '' }}>
+
+                                        @else
+                                            {{-- se non sono presenti errori di validazione significa che la pagina è appena stata aperta per la prima volta, perciò bisogna recuperare i profile dalla relazione con il post, che è una collection --}}
+                                            <input name="profiles[]" type="checkbox" value="{{ $profile->id }}" id="profile-{{$profile->id}}"
+                                                {{ $user->profiles->contains($profile) ? 'checked' : '' }}>
+                                        @endif
+                                        <label  for="profile-{{$profile->id}}" >{{ $profile->name }}</label>
+                                    </div>
+
+                                </div>
+                            @endforeach
+                            @error('profiles')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
+
+
+
                     </div>
                 </div>
 

@@ -30,7 +30,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body p-2">
-                <p>Nome: <strong>{{ $profile->nome }}</strong></p>
+                <p>Nome: <strong>{{ $profile->name }}</strong></p>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
