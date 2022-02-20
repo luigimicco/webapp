@@ -81,51 +81,45 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/confirm-delete.js":
-/*!****************************************!*\
-  !*** ./resources/js/confirm-delete.js ***!
-  \****************************************/
+/***/ "./resources/js/popup-message.js":
+/*!***************************************!*\
+  !*** ./resources/js/popup-message.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 window.onload = function () {
-  var deleteButtons = document.querySelectorAll(".delete-button");
-  deleteButtons.forEach(function (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      Swal.fire({
-        title: 'Sei sicuro ?',
-        text: "Questa operazione è irreversibile !",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Annulla',
-        confirmButtonText: 'Si, procedi !'
-      }).then(function (result) {
-        if (result.value) {
-          form.submit();
-        }
-      });
+  var popup = document.getElementById('popup_message');
+
+  if (popup) {
+    // show a message in a toast
+    Swal.fire({
+      toast: true,
+      animation: false,
+      title: popup.dataset.message,
+      type: popup.dataset.type,
+      position: 'top-right',
+      timer: 3000,
+      showConfirmButton: false
     });
-  });
+  }
 };
 
 /***/ }),
 
-/***/ 1:
-/*!**********************************************!*\
-  !*** multi ./resources/js/confirm-delete.js ***!
-  \**********************************************/
+/***/ 2:
+/*!*********************************************!*\
+  !*** multi ./resources/js/popup-message.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Work\CartesioWeb\cartesio\resources\js\confirm-delete.js */"./resources/js/confirm-delete.js");
+module.exports = __webpack_require__(/*! C:\Work\CartesioWeb\cartesio\resources\js\popup-message.js */"./resources/js/popup-message.js");
 
 
 /***/ })

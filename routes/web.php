@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 //! Email
-Route::get('/contact', 'MailController@index')->name('contact.index');
+Route::get('/contact', 'MailController@index')->name('contact');
 Route::post('/contact', 'MailController@send')->name('contact.send');
 
 /*

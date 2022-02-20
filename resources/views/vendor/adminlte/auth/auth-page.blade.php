@@ -18,17 +18,16 @@
 
 @section('body')
 
-<div class="container-fluid">
-<!-- Image and text -->
-  <nav class="navbar  fixed-top navbar-light bg-light bg-white shadow-sm justify-content-between">
-    <a class="navbar-brand" href="/login">
-        <img src="{{ asset(config('adminlte.logo_img')) }}" class="{{ config('adminlte.logo_img_class') }}" height="30"> 
-        {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
-    </a>
-    <a href="{{ config('adminlte.contact_url') }}" class="btn btn-link p-2">Contatti</a>
-  </nav>
-
-</div>
+    <div class="container-fluid">
+        <!-- Image and text -->
+        <nav class="navbar  fixed-top navbar-light bg-light bg-white shadow-sm justify-content-between">
+            <a class="navbar-brand" href="/login">
+                <img src="{{ asset(config('adminlte.logo_img')) }}" class="{{ config('adminlte.logo_img_class') }}" height="30"> 
+                {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
+            </a>
+            <a href="{{ config('adminlte.contact_url') }}" class="btn btn-link p-2">Contatti</a>
+        </nav>
+    </div>
 
 
     <div class="{{ $auth_type ?? 'login' }}-box">
@@ -67,7 +66,11 @@
         </div>
     </div>
 
-
+    <footer class="footer-sticky d-none d-sm-block">
+        <div class="container text-center">
+          <span class="text-muted">Copyright 2022</span>
+        </div>
+    </footer>
 
 @stop
 
