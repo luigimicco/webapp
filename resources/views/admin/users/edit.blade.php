@@ -13,7 +13,7 @@
         @method('PATCH')
         @csrf
 
-        <div class="card card-primary card-outline direct-chat direct-chat-primary">
+        <div class="card card-primary card-outline">
             <div class="card-header">
                 <h3 class="card-title"><strong>{{ $user->nome . ' ' . $user->cognome }}</strong></h3>
 
@@ -98,25 +98,25 @@
                         {{-- profili dell'utente --}}
                         <div class="form-group">
                             <p>Seleziona i profili:</p>
-                            @foreach ($profiles as $profile)
-                                <div class="form-check @error('profiles') is-invalid @enderror">
+                            @foreach ($permissions as $permission)
+                                <div class="form-check @error('permissions') is-invalid @enderror">
                                     <div class="icheck-primary">
                                         @if($errors->any())
-                                            {{-- se ci sono degli errori di validazione signifca che bisogna recuperare i profile selezionati tramite la funzione old(), la quale restituisce un array plain --}}
-                                            <input name="profiles[]" type="checkbox" value="{{ $profile->id }}"  id="profile-{{$profile->id}}"
-                                                {{ in_array($profile->id, old('profiles', [])) ? 'checked' : '' }}>
+                                            {{-- se ci sono degli errori di validazione signifca che bisogna recuperare i permission selezionati tramite la funzione old(), la quale restituisce un array plain --}}
+                                            <input name="permissions[]" type="checkbox" value="{{ $permission->id }}"  id="permission-{{$permission->id}}"
+                                                {{ in_array($permission->id, old('permissions', [])) ? 'checked' : '' }}>
 
                                         @else
-                                            {{-- se non sono presenti errori di validazione significa che la pagina è appena stata aperta per la prima volta, perciò bisogna recuperare i profile dalla relazione con il post, che è una collection --}}
-                                            <input name="profiles[]" type="checkbox" value="{{ $profile->id }}" id="profile-{{$profile->id}}"
-                                                {{ $user->profiles->contains($profile) ? 'checked' : '' }}>
+                                            {{-- se non sono presenti errori di validazione significa che la pagina è appena stata aperta per la prima volta, perciò bisogna recuperare i permission dalla relazione con il post, che è una collection --}}
+                                            <input name="permissions[]" type="checkbox" value="{{ $permission->id }}" id="permission-{{$permission->id}}"
+                                                {{ $user->permissions->contains($permission) ? 'checked' : '' }}>
                                         @endif
-                                        <label  for="profile-{{$profile->id}}" >{{ $profile->name }}</label>
+                                        <label  for="permission-{{$permission->id}}" >{{ $permission->name }}</label>
                                     </div>
 
                                 </div>
                             @endforeach
-                            @error('profiles')
+                            @error('permissions')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

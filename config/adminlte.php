@@ -17,6 +17,8 @@ return [
     'title' => 'Cartesio web',
     'title_prefix' => '',
     'title_postfix' => '',
+    'copyright' => 'Cartesio',
+    'version' => '1.0.0',
 
     /*
     |--------------------------------------------------------------------------
@@ -195,6 +197,7 @@ return [
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
     'profile_url' => false,
+    'contact_url' => 'contact',
 
     /*
     |--------------------------------------------------------------------------
@@ -542,9 +545,6 @@ return [
             ],            
         ],
 
-
-
-
         [
             'header' => 'CONFIGURAZIONE',
             'can' => 'menu-admin'
@@ -556,9 +556,9 @@ return [
             'can' => 'menu-admin'           
         ],
         [
-            'text'        => 'Profili',
+            'text'        => 'Permessi',
             'icon'        => 'fas fa-fw fa-id-badge',
-            'url'  => 'admin/profiles', 
+            'url'  => 'admin/permissions', 
             'can' => 'menu-admin'           
         ],
 
@@ -754,6 +754,17 @@ return [
                 ],
             ],
         ],
+        'BsCustomFileInput' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/bs-custom-file-input/bs-custom-file-input.min.js',
+                ],
+            ],
+        ],
+
     ],
 
     /*

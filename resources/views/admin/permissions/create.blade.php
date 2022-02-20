@@ -3,14 +3,14 @@
 @section('title', 'Nuovo profilo')
 
 @section('content_header')
-    <h1>Nuovo profilo</h1>
+    <h1>Nuovo profilo permessi</h1>
 @stop
 
 @section('content')
     <div class="container">
-        <h1>Crea nuovo profilo</h1>
+        <h1>Crea profilo permessi</h1>
 
-        <form action="{{ route('admin.profiles.store') }}" method="POST">
+        <form action="{{ route('admin.permissions.store') }}" method="POST">
             @csrf
             {{-- nome servizio --}}
             <div class="form-group row">
@@ -31,7 +31,7 @@
             <button type="submit" class="btn btn-success">Invia</button>
         </form>
         <div class="d-flex justify-content-end mt-3">
-            <a href="{{ route('admin.profiles.index') }}" class="btn btn-secondary">Indietro</a>
+            <a href="{{ route('admin.permissions.index') }}" class="btn btn-secondary">Indietro</a>
         </div>
     </div>
 

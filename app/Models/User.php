@@ -7,11 +7,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use Sortable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nome', 'cognome', 'email', 'password', 'active'
+        'nome', 'cognome', 'email', 'password', 'active', 'image'
     ];
 
     public $sortable = ['id', 'nome', 'email', 'active'];
@@ -32,6 +35,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that should be cast to native types.
@@ -52,16 +57,28 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Role')->withTimestamps();
     }   
     
-    public function profiles() {
-        return $this->belongsToMany('App\Models\Profile');
+    public function permissions() {
+        return $this->belongsToMany('App\Models\Permission');
+    }
+
+    public function user_image() {
+        $image = "noimage.png";
+
+        if (Auth::user()->image) 
+            $image = Auth::user()->image;
+
+        return  Storage::url("/profiles/{$image}");
+        // $id = Auth::user()->email;
+        // return './storage/avatars/' . $image; //"https://i.pravatar.cc/160?u={$id}";
+
     }
 
 
+    // ************************************************************
     // for AdminLte 
     public function adminlte_image()
     {
-        $id = Auth::user()->email;
-        return "https://i.pravatar.cc/160?u={$id}";
+        return $this->user_image();
     } 
     
     public function adminlte_desc()

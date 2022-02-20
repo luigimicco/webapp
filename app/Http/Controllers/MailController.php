@@ -11,7 +11,7 @@ class MailController extends Controller
 {
     public function index()
     {
-        return view('contact.index');
+        return view('contact.contact');
     }
 
     public function send(Request $request)
@@ -22,6 +22,6 @@ class MailController extends Controller
         $new_lead->save();
 
         Mail::to($new_lead->email)->send(new SendNewMail($new_lead));
-        return redirect()->route('contact.index');
+        return redirect()->route('contact.contact');
     }
 }

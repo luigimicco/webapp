@@ -18,8 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('nome', 50);
             $table->string('cognome', 50);
             $table->string('email')->unique();
-            $table->boolean('active')->deafult(false);
+            $table->boolean('active')->default(false);
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('image', 50)->default("");
             $table->string('password');
             $table->rememberToken();
             $table->softDeletes();

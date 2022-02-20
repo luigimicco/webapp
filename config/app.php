@@ -178,6 +178,9 @@ return [
         // sortable
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
 
+        // Image
+        Intervention\Image\ImageServiceProvider::class
+
     ],
 
     /*

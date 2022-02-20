@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Role;
-use App\Models\Profile;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,8 +38,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        $profiles = Profile::all();
-        return view('admin.users.create', compact('roles', 'profiles'));        
+        $permissions = Permission::all();
+        return view('admin.users.create', compact('roles', 'permissions'));        
     }    
 
     /**
@@ -55,7 +55,7 @@ class UserController extends Controller
             'email' => 'required|unique:users',
             'nome' => 'required',
             'cognome' => 'required',
-            'profiles' => 'exists:profiles,id'
+            'permissions' => 'exists:permissions,id'
         ], [
             'required' => 'Il contenuto è obbligatorio',
             'email.unique' => 'Email già in uso',
@@ -76,9 +76,9 @@ class UserController extends Controller
         }
         
         // verifico se sono stati selezionati dei profili
-        if(array_key_exists('profiles', $data)) {
+        if(array_key_exists('permissions', $data)) {
             // aggiungo i profili all'utente
-            $user->profiles()->sync($data['profiles']);
+            $user->permissions()->sync($data['permissions']);
         }
 
 
@@ -115,10 +115,10 @@ class UserController extends Controller
         if ($user_id == 1 or $user_id == $user->id) {
 
             $roles = Role::all();
-            $profiles= Profile::all();
+            $permissions= Permission::all();
             $roleIds = $user->roles->pluck('id')->toArray();
-            $profileIds = $user->profiles->pluck('id')->toArray();
-            return view('admin.users.edit', compact('user', 'roles','profiles', 'roleIds', 'profileIds'));
+            $permissionIds = $user->permissions->pluck('id')->toArray();
+            return view('admin.users.edit', compact('user', 'roles','permissions', 'roleIds', 'permissionIds'));
         } else {
             return redirect()->route('admin.dashboard');
         }
@@ -140,7 +140,7 @@ class UserController extends Controller
             $request->validate([
                 'nome' => 'required',
                 'cognome' => 'required',
-                'profiles' => 'exists:profiles,id'
+                'permissions' => 'exists:permissions,id'
             ], [
                 'required' => 'Il contenuto è obbligatorio',
             ]);
@@ -150,15 +150,15 @@ class UserController extends Controller
 
             if (!$data) {
                 $user->roles()->detach();
-                $user->profiles()->detach();
+                $user->permissions()->detach();
             }
 
             if(array_key_exists('roles', $data)) {
                 $user->roles()->sync($data['roles']);
             }
 
-            if(array_key_exists('profiles', $data)) {
-                $user->profiles()->sync($data['profiles']);
+            if(array_key_exists('permissions', $data)) {
+                $user->permissions()->sync($data['permissions']);
             }
 
             return redirect()->route('admin.users.index')->with('alert', 'success')->with('alert-message', "$user->name modificato con successo");
@@ -181,7 +181,7 @@ class UserController extends Controller
 
         if ($user_id == 1) {
             $user->roles()->sync([]);
-            $user->profiles()->sync([]);
+            $user->permissions()->sync([]);
             $user->delete();
             return redirect()->route('admin.users.index')->with('alert-message', 'Utente eliminato con successo.')->with('alert-type', 'success');
         } else {

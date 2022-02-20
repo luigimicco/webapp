@@ -118,18 +118,18 @@
             {{-- profili dell'utente --}}
             <div class="form-group">
                 <p>Seleziona i profili:</p>
-                @foreach ($profiles as $profile)
-                    <div class="form-check @error('profiles') is-invalid @enderror">
+                @foreach ($permissions as $permission)
+                    <div class="form-check @error('permissions') is-invalid @enderror">
                         <label class="form-check-label">
-                            <input name="profiles[]"
+                            <input name="permissions[]"
                                 class="form-check-input" type="checkbox"
-                                value="{{ $profile->id }}"
-                                {{ in_array($profile->id, old('profiles', [])) ? 'checked' : '' }}>
-                            {{ $profile->name }}
+                                value="{{ $permission->id }}"
+                                {{ in_array($permission->id, old('permissions', [])) ? 'checked' : '' }}>
+                            {{ $permission->name }}
                         </label>
                     </div>
                 @endforeach
-                @error('profiles')
+                @error('permissions')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

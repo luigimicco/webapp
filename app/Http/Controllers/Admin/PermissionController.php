@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
-use App\Models\Profile;
+use App\Models\Permission;
 
-class ProfileController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +20,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profiles = Profile::paginate(10);
-        return view('admin.profiles.index', compact('profiles'));
+        $permissions = Permission::paginate(10);
+        return view('admin.permissions.index', compact('permissions'));
     }
 
     /**
@@ -31,8 +31,8 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        $profile = new Profile();
-        return view('admin.profiles.create', compact('profile'));
+        $permission = new Permission();
+        return view('admin.permissions.create', compact('profile'));
     }
 
     /**
@@ -51,11 +51,11 @@ class ProfileController extends Controller
 
         $data = $request->all();
         $data['active'] = false;
-        $profile = new Profile();
-        $profile->fill($data);
-        $profile->save();
+        $permission = new Permission();
+        $permission->fill($data);
+        $permission->save();
 
-        return redirect()->route('admin.profiles.show', compact('profile'));
+        return redirect()->route('admin.permissions.show', compact('profile'));
     }
 
     /**
@@ -64,9 +64,9 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show(Permission $permission)
     {
-        return view('admin.profiles.show', compact('profile'));
+        return view('admin.permissions.show', compact('profile'));
     }
 
     /**
@@ -75,9 +75,9 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profile $profile)
+    public function edit(Permission $permission)
     {
-        return view('admin.profiles.edit', compact('profile'));
+        return view('admin.permissions.edit', compact('profile'));
     }
 
     /**
@@ -87,7 +87,7 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, Permission $permission)
     {
         $request->validate(
             [
@@ -96,9 +96,9 @@ class ProfileController extends Controller
         );
 
         $data = $request->all();
-        $profile->update($data);
+        $permission->update($data);
 
-        return redirect()->route('admin.profiles.show', compact('profile'));
+        return redirect()->route('admin.permissions.show', compact('profile'));
     }
 
     /**
@@ -107,9 +107,9 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profile $profile)
+    public function destroy(Permission $permission)
     {
-        $profile->delete();
-        return redirect()->route('admin.profiles.index')->with('alert-message', 'Profilo eliminato con successo.')->with('alert-type', 'success');
+        $permission->delete();
+        return redirect()->route('admin.permissions.index')->with('alert-message', 'Profilo eliminato con successo.')->with('alert-type', 'success');
     }
 }

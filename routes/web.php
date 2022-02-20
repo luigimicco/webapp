@@ -27,21 +27,21 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/', 'PrivateController@index')->name('home');
-Route::get('/profile', 'MeController@index')->name('profile');
+
+// personal profile
+Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::patch('/profile/update', 'ProfileController@update')->name('profile.update');
+
+//Route::resource('/profile', 'MeController');
+
+
 
 Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
     //! Admin Home
     Route::get('/', 'HomeController@index')->name('acp');
     //! Users
     Route::resource('/users', 'UserController');
-    Route::resource('/profiles', 'ProfileController');
-
-/*
-    //! Posts res
-    Route::resource('/posts', 'PostController');
-    //! Categories res
-    Route::resource('/categories', 'CategoryController');
-*/
+    Route::resource('/permissions', 'PermissionController');
 
     Route::get('/{any}', function () {
         return abort(404);

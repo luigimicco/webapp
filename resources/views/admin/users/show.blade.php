@@ -43,8 +43,8 @@
                 </dd>                
                 <dt>Profili</dt>
                 <dd>
-                    @forelse ($user->profiles as $profile)
-                        {{ $profile->name }}{{ !$loop->last ? ',' : '' }}
+                    @forelse ($user->permissions as $permission)
+                        {{ $permission->name }}{{ !$loop->last ? ',' : '' }}
                     @empty
                         -
                     @endforelse
