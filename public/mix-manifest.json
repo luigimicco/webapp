@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/login.css": "/css/login.css",
+    "/css/buttons.css": "/css/buttons.css",
     "/js/confirm-delete.js": "/js/confirm-delete.js",
     "/js/popup-message.js": "/js/popup-message.js"
 }

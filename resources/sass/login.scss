@@ -8,5 +8,25 @@ $body-auth: #f8fafc;
   width: 100%;
   height: 60px; /* Set the fixed height of the footer here */
   line-height: 60px; /* Vertically center the text there */
- 
-}
+ }
+
+ body {
+  /*css for full size background image*/
+   background: url(https://source.unsplash.com/category/nature/1024x800) no-repeat center center fixed; 
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   height: 100%;   
+   overflow: hidden;  
+   opacity: 1.0;
+   -webkit-transition: background 1.5s linear;
+   -moz-transition: background 1.5s linear;
+   -o-transition: background 1.5s linear;
+   -ms-transition: background 1.5s linear;
+   transition: background 1.5s linear;
+   
+   background-color: #fff;
+   color: #000;   
+ }   
+

@@ -17,10 +17,9 @@
 @section('classes_body'){{ ($auth_type ?? 'login') . '-page' }}@stop
 
 @section('body')
-
     <div class="container-fluid">
         <!-- Image and text -->
-        <nav class="navbar  fixed-top navbar-light bg-light bg-white shadow-sm justify-content-between">
+        <nav class="navbar fixed-top navbar-light bg-light bg-white shadow-sm justify-content-between">
             <a class="navbar-brand" href="/login">
                 <img src="{{ asset(config('adminlte.logo_img')) }}" class="{{ config('adminlte.logo_img_class') }}" height="30"> 
                 {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
