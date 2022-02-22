@@ -34,11 +34,10 @@ Route::patch('/profile/update', 'ProfileController@update')->name('profile.updat
 
 //Route::resource('/profile', 'MeController');
 
-
-
 Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
     //! Admin Home
-    Route::get('/', 'HomeController@index')->name('acp');
+    Route::get('/', 'HomeController@index')->name('bacheca');
+    Route::get('/acp', 'AdminController@index')->name('admin.acp');;
     //! Users
     Route::resource('/users', 'UserController');
     Route::resource('/permissions', 'PermissionController');
@@ -49,7 +48,7 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->
 });
 
 Route::get('{any?}', function () {
-    return view('guest.home');
+    return redirect()->route('home')->with('alert-message', 'Pagina non presente.')->with('alert-type', 'warning');; // view('guest.home');
 })->where('any', '.*');
 
 /*

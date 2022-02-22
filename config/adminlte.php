@@ -550,18 +550,11 @@ return [
             'can' => 'menu-admin'
         ],
         [
-            'text'        => 'Utenti',
-            'icon'        => 'fas fa-fw fa-users',
-            'url'  => 'admin/users', 
+            'text'        => 'Pannello di controllo',
+            'icon'        => 'fas fa-fw fa-cogs',
+            'url'  => 'admin/acp', 
             'can' => 'menu-admin'           
         ],
-        [
-            'text'        => 'Permessi',
-            'icon'        => 'fas fa-fw fa-id-badge',
-            'url'  => 'admin/permissions', 
-            'can' => 'menu-admin'           
-        ],
-
 
 /*
         [
