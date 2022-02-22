@@ -3,7 +3,7 @@
 @section('title', 'Profilo utente')
 
 @section('content_header')
-    <h1>Profilo utente</h1>
+    {{ Breadcrumbs::render() }}
 @stop
 
 @section('content')

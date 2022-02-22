@@ -3,7 +3,7 @@
 @section('title', 'Archivio utenti')
 
 @section('content_header')
-    <h1>Utenti</h1>
+    {{ Breadcrumbs::render() }}
 @stop
 
 @section('content')
@@ -74,6 +74,10 @@
                                 <td class="text-center">@if ($user->active) <i class="fas fa-check"></i>@endif</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
+                                    @php
+                                        print_r($user->roles->pluck('name')->toArray());    
+
+                                    @endphp
                                     @foreach ($roles as $role)
                                         @if (in_array($role->id, $user->roles->pluck('id')->toArray()))
                                           <span class="right badge " style="background-color:{{$role->color}} ">{{$role->name}}</span>&nbsp;
@@ -117,7 +121,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer text-right p-2">
-                {{$users->count()}} utenti di {{ $users->total() }}
+                {{$users->count()}} elementi di {{ $users->total() }}
             </div>            
         </div>
 

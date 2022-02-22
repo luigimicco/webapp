@@ -31,7 +31,7 @@ class ProfileController extends Controller
     {
         $roles = Role::all();
         $user = User::findOrFail(Auth::id());
-        return view('private.profile', compact('user', 'roles'));
+        return view('profile', compact('user', 'roles'));
     }
 
     public function update(Request $request)

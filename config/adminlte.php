@@ -546,6 +546,12 @@ return [
         ],
 
         [
+            'text'        => 'Esempio',
+            'icon'        => 'fas fa-fw fa-cogs',
+            'url'  => 'simple', 
+        ],
+
+        [
             'header' => 'CONFIGURAZIONE',
             'can' => 'menu-admin'
         ],

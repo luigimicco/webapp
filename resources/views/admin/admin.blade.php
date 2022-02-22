@@ -3,7 +3,7 @@
 @section('title', 'Pannello di controllo')
 
 @section('content_header')
-    <h1>Pannello di controllo</h1>
+    {{ Breadcrumbs::render() }}
 @stop
 
 @section('content')

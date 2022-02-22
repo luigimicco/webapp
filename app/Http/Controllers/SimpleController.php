@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PrivateController extends Controller
+class SimpleController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,7 +23,7 @@ class PrivateController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        return view('simple');
     }
 
 }

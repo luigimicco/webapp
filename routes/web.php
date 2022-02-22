@@ -26,18 +26,26 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// pagine accessibili agli utenti
 Route::get('/', 'PrivateController@index')->name('home');
+Route::get('/simple', 'SimpleController@index')->name('simple');
 
-// personal profile
+// profilo personale
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::patch('/profile/update', 'ProfileController@update')->name('profile.update');
 
-//Route::resource('/profile', 'MeController');
+/*
+Route::put('/admin/acp', function () {
+    //
+})->middleware('role:admin');
+*/
 
-Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
+
+// pagine accessibili all'admin
+Route::middleware('role:admin')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
     //! Admin Home
-    Route::get('/', 'HomeController@index')->name('bacheca');
     Route::get('/acp', 'AdminController@index')->name('admin.acp');;
+
     //! Users
     Route::resource('/users', 'UserController');
     Route::resource('/permissions', 'PermissionController');
@@ -46,6 +54,7 @@ Route::middleware('auth')->name('admin.')->prefix('admin')->namespace('Admin')->
         return abort(404);
     });
 });
+
 
 Route::get('{any?}', function () {
     return redirect()->route('home')->with('alert-message', 'Pagina non presente.')->with('alert-type', 'warning');; // view('guest.home');

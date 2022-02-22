@@ -3,7 +3,7 @@
 @section('title', 'Archivio profili permessi')
 
 @section('content_header')
-    <h1>Definizione profili permessi</h1>
+    {{ Breadcrumbs::render() }}
 @stop
 
 @section('content')

@@ -61,6 +61,17 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Permission');
     }
 
+    // true if user is Admin
+    public function isAdmin() {
+        return $this->hasRole('admin');
+    }
+
+    // true if user has a role
+    public function hasRole($role) {
+        $roles = Auth::user()->roles->pluck('name')->toArray();
+        return in_array($role, $roles);
+    }
+
     public function user_image() {
         $image = "noimage.png";
 
