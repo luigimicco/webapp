@@ -13,6 +13,12 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('Bacheca', route('home'));
 });
 
+Breadcrumbs::for('errors.404', function (BreadcrumbTrail $trail) {
+  $trail->parent('home');
+  $trail->push('Pagina non trovata');
+});
+
+
 // Home > Profilo
 Breadcrumbs::for('profile', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
@@ -30,6 +36,14 @@ Breadcrumbs::for('admin.users.index', function (BreadcrumbTrail $trail) {
   $trail->parent('admin.admin.acp');
   $trail->push('Utenti', route('admin.users.index'));
 });
+
+// Home > Pannello di controllo > Command
+  Breadcrumbs::for('admin.admin.command', function (BreadcrumbTrail $trail) {
+  $trail->parent('admin.admin.acp');
+  $trail->push('Artisan command', route('admin.admin.command'));
+});
+
+
 
 // Home > Pannello di controllo > Permessi
 Breadcrumbs::for('admin.permissions.index', function (BreadcrumbTrail $trail) {

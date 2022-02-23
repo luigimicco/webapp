@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-//! Email
+/********************************************
+ Pagini pubbliche
+*********************************************/
 Route::get('/contact', 'MailController@index')->name('contact');
 Route::post('/contact', 'MailController@send')->name('contact.send');
 
@@ -25,6 +27,10 @@ Route::get('/', function () {
 */
 
 Auth::routes();
+
+/********************************************
+ Pagini accessibili dietro login
+*********************************************/
 
 // pagine accessibili agli utenti
 Route::get('/', 'PrivateController@index')->name('home');
@@ -41,12 +47,13 @@ Route::put('/admin/acp', function () {
 */
 
 
-// pagine accessibili all'admin
+/********************************************
+ Pagini accessibili solo ad admin
+*********************************************/
 Route::middleware('role:admin')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
-    //! Admin Home
     Route::get('/acp', 'AdminController@index')->name('admin.acp');;
+    Route::get('/command/{action}', 'AdminController@command')->name('admin.command');;
 
-    //! Users
     Route::resource('/users', 'UserController');
     Route::resource('/permissions', 'PermissionController');
 
@@ -56,13 +63,11 @@ Route::middleware('role:admin')->name('admin.')->prefix('admin')->namespace('Adm
 });
 
 
+
 Route::get('{any?}', function () {
-    return redirect()->route('home')->with('alert-message', 'Pagina non presente.')->with('alert-type', 'warning');; // view('guest.home');
+    return redirect()->route('home')->with('alert-message', 'Pagina non presente.')->with('alert-type', 'warning'); // view('guest.home');
 })->where('any', '.*');
 
-/*
-Route::get('/home', 'HomeController@index')->name('home');
-*/
 
 
 
