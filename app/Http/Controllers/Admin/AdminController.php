@@ -23,7 +23,7 @@ class AdminController extends Controller
         return view('admin.admin');
     }
 
-    public function command($action)
+    public function artisan($action)
     {
         $message = "";
         

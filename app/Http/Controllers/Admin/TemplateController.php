@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Models\Permission;
+use App\Models\Template;
 
-class PermissionController extends Controller
+class TemplateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,17 +16,19 @@ class PermissionController extends Controller
      */
     public function index(Request $request)
     {
+
         $ipp = $request->ipp ?? 10; // items per page
         $search = $request->search ?? '';
 
         if ($search) {
-            $items = Permission::where('nome', 'LIKE', '%'.$search.'%')
+            $items = Template::where('nome', 'LIKE', '%'.$search.'%')
             ->sortable(['id'])->paginate($ipp);
         } else {
-          $items = Permission::sortable(['id'])->paginate($ipp);
+          $items = Template::sortable(['id'])->paginate($ipp);
         }
 
-        return view('admin.permissions.index', compact('items', 'ipp', 'search'));        
+        return view('admin.templates.index', compact('items', 'ipp', 'search'));        
+
     }
 
     /**
@@ -36,8 +38,8 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        $permission = new Permission();
-        return view('admin.permissions.form', compact('permission'));
+        $template = new Template();
+        return view('admin.templates.form', compact('template'));
     }
 
     /**
@@ -56,11 +58,11 @@ class PermissionController extends Controller
 
         $data = $request->all();
         $data['active'] = false;
-        $permission = new Permission();
-        $permission->fill($data);
-        $permission->save();
+        $template = new Template();
+        $template->fill($data);
+        $template->save();
 
-        return redirect()->route('admin.permissions.show', compact('permission'));
+        return redirect()->route('admin.templates.show', compact('template'));
     }
 
     /**
@@ -69,9 +71,9 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Permission $permission)
+    public function show(Template $template)
     {
-        return view('admin.permissions.show', compact('permission'));
+        return view('admin.templates.show', compact('template'));
     }
 
     /**
@@ -80,9 +82,9 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permission $permission)
+    public function edit(Template $template)
     {
-        return view('admin.permissions.form', compact('permission'));
+        return view('admin.templates.form', compact('template'));
     }
 
     /**
@@ -92,7 +94,7 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permission $permission)
+    public function update(Request $request, Template $template)
     {
         $request->validate(
             [
@@ -101,9 +103,9 @@ class PermissionController extends Controller
         );
 
         $data = $request->all();
-        $permission->update($data);
+        $template->update($data);
 
-        return redirect()->route('admin.permissions.show', compact('permission'));
+        return redirect()->route('admin.templates.show', compact('template'));
     }
 
     /**
@@ -112,9 +114,9 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy(Template $template)
     {
-        $permission->delete();
-        return redirect()->route('admin.permissions.index')->with('alert-message', 'Profilo eliminato con successo.')->with('alert-type', 'success');
+        $template->delete();
+        return redirect()->route('admin.templates.index')->with('alert-message', 'Profilo eliminato con successo.')->with('alert-type', 'success');
     }
 }

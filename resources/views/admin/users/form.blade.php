@@ -1,22 +1,31 @@
 @extends('layouts.lte')
 
-@section('title', 'Modifica utente')
+@section('title', 'Crea/Modifica utente')
 
 @section('content_header')
-    <h1>Modifica utente</h1>
+    {{ Breadcrumbs::render() }}
 @stop
 
 @section('content')
 <div class="container">
 
-    <form method="POST" action="{{route('admin.users.update', $user->id)}}">
+    @if(isset($user))
+        <form method="POST" action="{{route('admin.users.update', $user->id)}}">
         @method('PATCH')
+    @else
+        <form method="POST" action="{{ route('admin.users.store') }}">
+    @endif
+
         @csrf
 
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h3 class="card-title"><strong>{{ $user->nome . ' ' . $user->cognome }}</strong></h3>
-
+                @if(isset($user))
+                    <h3 class="card-title"><strong>{{ $user->nome . ' ' . $user->cognome }}</strong></h3>
+                @else
+                    <h3 class="card-title">nuovo utente</h3>
+                @endif
+                
                 <div class="card-tools">
                     <button class="btn btn-sm btn-success" type="submit"><i class="fas fa-save"></i>&nbsp;Conferma</button>
                     <a class="btn btn-sm btn-primary" href="{{route('admin.users.index')}}"><i class="fas fa-redo"></i>&nbsp;Annulla</a>
@@ -30,9 +39,9 @@
                         <div class="form-group">
                             <label for="nome">Nome</label>
                             <input type="text" class="form-control @error('nome') is-invalid @enderror" id="nome" name="nome"
-                                value="{{ old('nome', $user->nome) }}">
+                                value="{{ old('nome', $user->nome ?? '' ) }}" required autocomplete="nome" autofocus>
                             @error('nome')
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback" role="alert">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -40,9 +49,9 @@
                         <div class="form-group">
                             <label for="cognome">Cognome</label>
                             <input type="text" class="form-control @error('cognome') is-invalid @enderror" id="cognome" name="cognome"
-                                value="{{ old('cognome', $user->cognome) }}">
+                                value="{{ old('cognome', $user->cognome ?? '') }}" required autocomplete="cognome" autofocus>
                             @error('cognome')
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback" role="alert">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -50,24 +59,41 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                                value="{{ old('email', $user->email) }}">
+                                value="{{ old('email', $user->email ?? '') }}">
                             @error('email')
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback" role="alert">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
 
-
+                        <div class="form-group">
+                            <label for="password" >Password</label>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                                name="password" autocomplete="new-password">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="password_confirmation" >Conferma Password</label>
+                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation"
+                                autocomplete="new-password">
+                            @error('password_confirmation')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror                                                       
+                        </div>
 
 
 
                     </div>
                     <div class="col-6">
 
-
-
-    
                         {{-- ruoli dell'utente --}}
                         <div class="form-group">
                             <p>Seleziona i ruoli:</p>
@@ -82,7 +108,10 @@
                                         @else
                                             {{-- se non sono presenti errori di validazione significa che la pagina è appena stata aperta per la prima volta, perciò bisogna recuperare i role dalla relazione con il post, che è una collection --}}
                                             <input name="roles[]" type="checkbox" value="{{ $role->id }}" id="role-{{$role->id}}"
-                                                {{ $user->roles->contains($role) ? 'checked' : '' }}>
+                                            @if(isset($user))
+                                                {{ $user->roles->contains($role) ? 'checked' : '' }}
+                                            @endif    
+                                            >
                                         @endif
                                         <label for="role-{{$role->id}}" >{{ $role->name }}</label>
                                     </div>
@@ -90,7 +119,9 @@
                                 </div>
                             @endforeach
                             @error('roles')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
                             @enderror
                         </div>
 
@@ -109,7 +140,10 @@
                                         @else
                                             {{-- se non sono presenti errori di validazione significa che la pagina è appena stata aperta per la prima volta, perciò bisogna recuperare i permission dalla relazione con il post, che è una collection --}}
                                             <input name="permissions[]" type="checkbox" value="{{ $permission->id }}" id="permission-{{$permission->id}}"
-                                                {{ $user->permissions->contains($permission) ? 'checked' : '' }}>
+                                            @if(isset($user))
+                                                {{ $user->permissions->contains($permission) ? 'checked' : '' }}
+                                            @endif                                               
+                                            >
                                         @endif
                                         <label  for="permission-{{$permission->id}}" >{{ $permission->name }}</label>
                                     </div>
@@ -117,7 +151,9 @@
                                 </div>
                             @endforeach
                             @error('permissions')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
                             @enderror
                         </div>
 

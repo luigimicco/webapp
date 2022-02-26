@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-window.onload = function () {
+window.addEventListener("load", function () {
   var popup = document.getElementById('popup_message');
 
   if (popup) {
@@ -108,7 +108,7 @@ window.onload = function () {
       showConfirmButton: false
     });
   }
-};
+}, false);
 
 /***/ }),
 

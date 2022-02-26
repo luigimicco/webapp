@@ -22,14 +22,19 @@
     <i class="fas fa-id-badge"></i>
     <span class="caption">Permessi</span>
   </a> 
+
+  <a class="btn btn-primary btn-big " href="templates">
+    <i class="fas fa-envelope"></i>
+    <span class="caption">Modelli email</span>
+  </a>   
   <hr>
   <p>Comandi Artisan</p>
-  <a class="btn btn-warning btn-big " href="command/migrate">
+  <a class="btn btn-warning btn-big " href="artisan/migrate">
     <i class="fas fa-database"></i>
     <span class="caption">Migrate</span>
   </a> 
 
-  <a class="btn btn-warning btn-big " href="command/cache">
+  <a class="btn btn-warning btn-big " href="artisan/cache">
     <i class="fas fa-trash-alt"></i>
     <span class="caption">Clear cache</span>
   </a> 

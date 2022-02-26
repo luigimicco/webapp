@@ -1,4 +1,5 @@
-@unless ($breadcrumbs->isEmpty())
+@if (!$breadcrumbs->isEmpty())
+
     <div class="d-flex justify-content-between small-box p-1 ">
       <h1>@yield('title')</h1>
       <ol class="breadcrumb d-none d-md-inline-flex small">
@@ -13,4 +14,11 @@
           @endif
       </ol>
     </div>
-@endunless
+@else    
+    @hasSection('title')
+        <div class="d-flex justify-content-between small-box p-1 ">
+            <h1>@yield('title')</h1>
+        </div>
+
+    @endif
+@endif

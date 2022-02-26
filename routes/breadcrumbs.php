@@ -8,6 +8,36 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 //  with `$trail`. This is nice for IDE type checking and completion.
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
+// macro per CRUD
+Breadcrumbs::macro('resource', function (string $parent, string $name, string $title, string $item) {
+  // Home > Blog
+  Breadcrumbs::for("{$name}.index", function (BreadcrumbTrail $trail) use ($parent, $name, $title) {
+      $trail->parent($parent);
+      $trail->push($title, route("{$name}.index"));
+  });
+
+  // Home > Blog > New
+  Breadcrumbs::for("{$name}.create", function (BreadcrumbTrail $trail) use ($name) {
+      $trail->parent("{$name}.index");
+      $trail->push('Nuovo', route("{$name}.create"));
+  });
+
+  // Home > Blog > Post 123
+  Breadcrumbs::for("{$name}.show", function (BreadcrumbTrail $trail, $model) use ($name, $item) {
+      $trail->parent("{$name}.index");
+      $trail->push($item, route("{$name}.show", $model));
+  });
+
+  // Home > Blog > Post 123 > Edit
+  Breadcrumbs::for("{$name}.edit", function (BreadcrumbTrail $trail, $model) use ($name) {
+      $trail->parent("{$name}.show", $model);
+      $trail->push('Modifica', route("{$name}.edit", $model));
+  });
+});
+// macro per CRUD
+
+
+
 // Home
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('Bacheca', route('home'));
@@ -31,22 +61,15 @@ Breadcrumbs::for('admin.admin.acp', function (BreadcrumbTrail $trail) {
     $trail->push('Pannello di controllo', route('admin.admin.acp'));
 });
 
-// Home > Pannello di controllo > Utenti
-Breadcrumbs::for('admin.users.index', function (BreadcrumbTrail $trail) {
-  $trail->parent('admin.admin.acp');
-  $trail->push('Utenti', route('admin.users.index'));
-});
+// CRUD
+Breadcrumbs::resource('admin.admin.acp', 'admin.users', 'Utenti', 'Utente');
+Breadcrumbs::resource('admin.admin.acp', 'admin.permissions', 'Permessi','Permesso');
+Breadcrumbs::resource('admin.admin.acp', 'admin.templates', 'Modelli', 'Modello');
+
 
 // Home > Pannello di controllo > Command
-  Breadcrumbs::for('admin.admin.command', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('admin.admin.artisan', function (BreadcrumbTrail $trail) {
   $trail->parent('admin.admin.acp');
-  $trail->push('Artisan command', route('admin.admin.command'));
+  $trail->push('Artisan command', route('admin.admin.artisan'));
 });
 
-
-
-// Home > Pannello di controllo > Permessi
-Breadcrumbs::for('admin.permissions.index', function (BreadcrumbTrail $trail) {
-  $trail->parent('admin.admin.acp');
-  $trail->push('Permessi', route('admin.permissions.index'));
-});

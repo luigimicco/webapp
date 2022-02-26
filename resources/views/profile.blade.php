@@ -19,7 +19,7 @@
                   alt="User profile picture">
               </div>
               <h3 class="profile-username text-center">{{$user->nome}} {{$user->cognome}}</h3>
-              <h3 class="profile-email text-center">{{$user->email}}</h3>
+              <h3 class="profile-username text-center">{{$user->email}}</h3>
               <div class="text-center">
                 @foreach ($roles as $role)
                   @if (in_array($role->id, $user->roles->pluck('id')->toArray()))
@@ -124,6 +124,25 @@
                       </div>
                     </div>
                   </div>
+
+<!--
+            <div class="form-group row">
+                <label for="birth_date" class="col-md-4 col-form-label text-md-right">Data di Nascita</label>
+
+                <div class="col-md-6">
+                    <input id="birth_date" type="text" class="form-control @error('birth_date') is-invalid @enderror"
+                        name="birth_date" value="{{ old('birth_date') }}" required autocomplete="birth_date" autofocus>
+
+                    @error('birth_date')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+-->
+
+
                 </div>
               </div>
             </form>

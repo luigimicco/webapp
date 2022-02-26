@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Kyslik\ColumnSortable\Sortable;
 
-class Permission extends Model
+class Template extends Model
 {
+    use Notifiable;
     use Sortable;
     use SoftDeletes;
 
@@ -16,13 +18,10 @@ class Permission extends Model
      *
      * @var array
      */
-    protected $fillable = ['nome', 'active' ];
+    protected $fillable = [ 'name', 'active' ];
 
-    public $sortable = ['nome', 'active'];    
-    
+    public $sortable = ['name', 'active'];
+
     protected $dates = ['deleted_at'];
 
-    public function users() {
-        return $this->belongsToMany('App\Models\Users');
-    }
 }

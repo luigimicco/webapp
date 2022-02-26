@@ -1,4 +1,5 @@
-window.onload = function() {
+window.addEventListener("load",function () {
+    
     var popup = document.getElementById('popup_message');
     if (popup) {
         // show a message in a toast
@@ -12,5 +13,5 @@ window.onload = function() {
             showConfirmButton: false,
         });
     }
-};
+}, false);
 

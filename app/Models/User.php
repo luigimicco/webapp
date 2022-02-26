@@ -105,12 +105,12 @@ class User extends Authenticatable
     public function gate($can)
     {
       
-        if (Auth::user()->id == 1) {
+        if ($this->isAdmin()) {
             return true;
         } else {   
             switch ($can) {
                 case 'menu-admin':
-                    return in_array('admin', Auth::user()->roles->pluck('name')->toArray()); //(Auth::user()->id == 1);
+                    return $this->isAdmin(); //(Auth::user()->id == 1);
                     break;
                 
                 default:

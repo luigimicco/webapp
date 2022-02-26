@@ -1,4 +1,4 @@
-window.onload = function() {
+window.addEventListener("load",function () {
 
     const deleteButtons = document.querySelectorAll(".delete-button");
     deleteButtons.forEach((form) => {
@@ -23,5 +23,5 @@ window.onload = function() {
         });
     });
 
-};
+}, false);
 

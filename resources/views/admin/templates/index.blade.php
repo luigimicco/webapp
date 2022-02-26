@@ -1,6 +1,6 @@
 @extends('layouts.lte')
 
-@section('title', 'Archivio profili permessi')
+@section('title', 'Archivio modelli email')
 
 @section('content_header')
     {{ Breadcrumbs::render() }}
@@ -47,60 +47,60 @@
                     </div>
                 @endif 
                 <div class="p-2 d-flex">
-                    {!! $items->appends(\Request::except('page'))->render() !!}&nbsp;<a class="btn btn-sm btn-info" href="{{ route('admin.permissions.create') }}"><i class="fas fa-plus"></i>&nbsp;Nuovo</a>
+                    {!! $items->appends(\Request::except('page'))->render() !!}&nbsp;<a class="btn btn-sm btn-info" href="{{ route('admin.templates.create') }}"><i class="fas fa-plus"></i>&nbsp;Nuovo</a>
                 </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
-                @if (!empty($items) && count($items))
-                    <table class="table table-sm table-hover table-striped table-condensed w-100">
-                        <thead>
+            @if (!empty($items) && count($items))
+                <table class="table table-sm table-hover table-striped table-condensed w-100">
+                    <thead>
+                        <tr>
+                            <th scope="col">@sortablelink('name')</th>
+                            <th style="col" scope="col">@sortablelink('active', 'Attivo')</th>
+                            <th style="width: 40px" scope="col">Azioni</th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        @foreach ($items as $template)
                             <tr>
-                                <th scope="col">@sortablelink('name')</th>
-                                <th style="col" scope="col">@sortablelink('active', 'Attivo')</th>
-                                <th style="width: 40px" scope="col">Azioni</th>
-                            </tr>                        
-                        </thead>
-                        <tbody>
-                            @foreach ($items as $item)
-                                <tr>
-                                    <td class="text-bold"><a href="{{ route('admin.permissions.show', $item->id) }}">{{ $item->name }}</a></td>
-                                    <td class="text-center">@if ($item->active) <i class="fas fa-check"></i>@endif</td>
+                                <td class="text-bold"><a href="{{ route('admin.templates.show', $template->id) }}">{{ $template->name }}</a></td>
+                                <td class="text-center">@if ($template->active) <i class="fas fa-check"></i>@endif</td>
 
-                                    <td class="">
-                                        <div class="dropdown">
-                                            <button class="btn btn-sm btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false"></button>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                                <a href="{{ route('admin.permissions.show', $item->id) }}" class="dropdown-item"><i class="fas fa-fw fa-eye"></i>&nbsp;Mostra</a>
-                                                <a href="{{ route('admin.permissions.edit', $item->id) }}"
-                                                class="dropdown-item"><i class="fas fa-fw fa-edit"></i>&nbsp;Modifica</a>
-                                                <div class="dropdown-divider"></div>
-                                                <form class="delete-button" action="{{ route('admin.permissions.destroy', $item->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="dropdown-item text-red"><i class="fas fa-fw fa-trash"></i>&nbsp;Cancella</button>
-                                                </form>
-                                            </div>
+                                <td class="">
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false"></button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                            <a href="{{ route('admin.templates.show', $template->id) }}" class="dropdown-item"><i class="fas fa-fw fa-eye"></i>&nbsp;Mostra</a>
+                                            <a href="{{ route('admin.templates.edit', $template->id) }}"
+                                            class="dropdown-item"><i class="fas fa-fw fa-edit"></i>&nbsp;Modifica</a>
+                                            <div class="dropdown-divider"></div>
+                                            <form class="delete-button" action="{{ route('admin.templates.destroy', $template->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item text-red"><i class="fas fa-fw fa-trash"></i>&nbsp;Cancella</button>
+                                            </form>
                                         </div>
-                                
-                                        
-                                    </td>
-                                </tr>
-                            @endforeach          
-                        </tbody>
-                    </table>
-                @else
-                    <div class="jumbotron m-2">
-                        <h2 class="text-center">Nessun elemento da mostrare</h2>
-                    </div>    
-                @endif            
+                                    </div>
+                            
+                                    
+                                </td>
+                            </tr>
+                        @endforeach          
+                    </tbody>
+                </table>
+            @else
+                <div class="jumbotron m-2">
+                    <h2 class="text-center">Nessun elemento da mostrare</h2>
+                </div>    
+            @endif             
             </div>
             <!-- /.card-body -->
             @if (!empty($items) && count($items))
-                <div class="card-footer text-right p-2">
+                <div class="card-footer text-right">
                     {{$items->count()}} elementi di {{ $items->total() }}
-                </div>  
-            @endif          
+                </div>
+            @endif 
         </div>
 
     </div>

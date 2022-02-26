@@ -1,21 +1,30 @@
 @extends('layouts.lte')
 
-@section('title', 'Modifica permessi')
+@section('title', 'Crea/Modifica permesso')
 
 @section('content_header')
-    <h1>Modifica permessi</h1>
+    {{ Breadcrumbs::render() }}
 @stop
 
 @section('content')
 <div class="container">
 
-    <form method="POST" action="{{route('admin.permissions.update', $permission->id)}}">
+    @if(isset($user))
+        <form method="POST" action="{{route('admin.permissions.update', $permission->id)}}">
         @method('PATCH')
+    @else
+        <form method="POST" action="{{ route('admin.permissions.store') }}">
+    @endif
+
         @csrf
 
         <div class="card card-primary card-outline direct-chat direct-chat-primary">
             <div class="card-header">
-                <h3 class="card-title"><strong>{{ $permission->name }}</strong></h3>
+                @if(isset($permission))
+                    <h3 class="card-title"><strong>{{ $permission->name }}</strong></h3>
+                @else
+                    <h3 class="card-title">nuovo profilo di permessi</h3>
+                @endif
 
                 <div class="card-tools">
                     <button class="btn btn-sm btn-success" type="submit"><i class="fas fa-save"></i>&nbsp;Conferma</button>
@@ -30,9 +39,9 @@
                         <div class="form-group">
                             <label for="nome">Nome</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                                value="{{ old('name', $permission->name) }}">
+                                value="{{ old('name', $permission->name ?? '' ) }}" required autocomplete="name" autofocus>
                             @error('name')
-                                <div class="invalid-feedback">
+                            <span class="invalid-feedback" role="alert">
                                     {{ $message }}
                                 </div>
                             @enderror

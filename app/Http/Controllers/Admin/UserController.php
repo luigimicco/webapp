@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Validation\Rule;
 use App\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,21 +14,21 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $items = $request->items ?? 10;
+        $ipp = $request->ipp ?? 10; // items per page
         $search = $request->search ?? '';
 
         $roles = Role::all();
         if ($search) {
-            $users = User::where('nome', 'LIKE', '%'.$search.'%')
+            $items = User::where('nome', 'LIKE', '%'.$search.'%')
             ->orWhere('cognome', 'LIKE', '%'.$search.'%')
             ->orWhere('email', 'LIKE', '%'.$search.'%')
-            ->sortable(['id'])->paginate($items);
+            ->sortable(['id'])->paginate($ipp);
         } else {
-          $users = User::sortable(['id'])->paginate($items);
+          $items = User::sortable(['id'])->paginate($ipp);
         }
         
 
-        return view('admin.users.index', compact('users', 'roles', 'items', 'search'));
+        return view('admin.users.index', compact('items', 'roles', 'ipp', 'search'));
     }
 
     /**
@@ -39,7 +40,7 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $permissions = Permission::all();
-        return view('admin.users.create', compact('roles', 'permissions'));        
+        return view('admin.users.form', compact('roles', 'permissions'));        
     }    
 
     /**
@@ -55,14 +56,19 @@ class UserController extends Controller
             'email' => 'required|unique:users',
             'nome' => 'required',
             'cognome' => 'required',
+            'password' => 'min:8|confirmed', 
+            'email' => Rule::unique('users'),            
             'permissions' => 'exists:permissions,id'
         ], [
             'required' => 'Il contenuto è obbligatorio',
+            'confirmed' => 'Le due password non coincidono',
             'email.unique' => 'Email già in uso',
         ]);
 
         $data = $request->all();
+
         $data['password'] = bcrypt($data['password']);
+
         $user = new User();
         $user->fill($data);
         $user->active = false;
@@ -93,13 +99,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user_id = Auth::id();
-
-        if ($user_id == 1) {
-            return view('admin.users.show', compact('user'));
-        } else {
-            return redirect()->route('admin.dashboard');
-        }
+        
+        $roles = Role::all();
+        return view('admin.users.show', compact('user', 'roles'));
     }
 
     /**
@@ -110,18 +112,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $user_id = Auth::id();
-
-        if ($user_id == 1 or $user_id == $user->id) {
-
-            $roles = Role::all();
-            $permissions= Permission::all();
-            $roleIds = $user->roles->pluck('id')->toArray();
-            $permissionIds = $user->permissions->pluck('id')->toArray();
-            return view('admin.users.edit', compact('user', 'roles','permissions', 'roleIds', 'permissionIds'));
-        } else {
-            return redirect()->route('admin.dashboard');
-        }
+        $roles = Role::all();
+        $permissions= Permission::all();
+        $roleIds = $user->roles->pluck('id')->toArray();
+        $permissionIds = $user->permissions->pluck('id')->toArray();
+        return view('admin.users.form', compact('user', 'roles','permissions', 'roleIds', 'permissionIds'));
     } 
     
     
@@ -134,18 +129,29 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user_id = Auth::id();
 
-        if ($user_id == 1 or $user_id == $user->id) {
+        if ( Auth::isAdmin()) {
+
+
             $request->validate([
                 'nome' => 'required',
                 'cognome' => 'required',
-                'permissions' => 'exists:permissions,id'
+                'permissions' => 'exists:permissions,id',
+                'password' => 'nullable|min:8|confirmed', 
+                'email' => Rule::unique('users')->ignore($user->id),                
             ], [
                 'required' => 'Il contenuto è obbligatorio',
             ]);
 
             $data = $request->all();
+
+            if ($data['password'] == "") {
+                unset($data['password']);
+                unset($data['password_confirmation']);
+            } else {
+                $data['password'] = bcrypt($data['password']);
+            }
+                        
             $user->update($data);
 
             if (!$data) {
@@ -177,16 +183,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user_id = Auth::id();
-
-        if ($user_id == 1) {
-            $user->roles()->sync([]);
-            $user->permissions()->sync([]);
-            $user->delete();
-            return redirect()->route('admin.users.index')->with('alert-message', 'Utente eliminato con successo.')->with('alert-type', 'success');
-        } else {
-            return redirect()->route('admin.dashboard');
-        }
+        $user->roles()->sync([]);
+        $user->permissions()->sync([]);
+        $user->delete();
+        return redirect()->route('admin.users.index')->with('alert-message', 'Utente eliminato con successo.')->with('alert-type', 'success');
     }    
    
 

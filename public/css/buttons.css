@@ -10,6 +10,7 @@
   text-decoration: none;
   text-align: center;
   position: relative;
+  border-radius: 1em;
   margin: 5px;
 }
 
@@ -71,29 +72,13 @@
   z-index: 5;
 }
 
-/* Large Devices, Wide Screens */
-
-@media only screen and (max-width: 1200px) {
-  .btn-big {
-    min-width: 12em;
-  }
-
-  .btn-big i {
-    font-size: 3.5em;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-
-  .btn-big .caption {
-    font-size: 1.4em;
-  }
-}
-
 /* Medium Devices, Desktops */
 
 @media only screen and (max-width: 992px) {
   .btn-big {
-    min-width: 12em;
+    height: 10em;
+    width: 10em;
+    min-width: 10em;
   }
 
   .btn-big i {
@@ -111,9 +96,9 @@
 
 @media only screen and (max-width: 768px) {
   .btn-big {
-    height: 10em;
-    width: 10em;
-    min-width: 10em;
+    height: 9em;
+    width: 9em;
+    min-width: 9em;
   }
 
   .btn-big i {

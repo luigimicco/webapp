@@ -52,10 +52,11 @@ Route::put('/admin/acp', function () {
 *********************************************/
 Route::middleware('role:admin')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/acp', 'AdminController@index')->name('admin.acp');;
-    Route::get('/command/{action}', 'AdminController@command')->name('admin.command');;
+    Route::get('/artisan/{action}', 'AdminController@artisan')->name('admin.artisan');;
 
     Route::resource('/users', 'UserController');
     Route::resource('/permissions', 'PermissionController');
+    Route::resource('/templates', 'TemplateController');
 
     Route::get('/{any}', function () {
         return abort(404);

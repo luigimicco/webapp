@@ -3,7 +3,7 @@
 @section('title', 'Bacheca')
 
 @section('content_header')
-    {{ Breadcrumbs::render() }}
+    
 @stop
 
 @section('content')

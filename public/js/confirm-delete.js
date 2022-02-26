@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-window.onload = function () {
+window.addEventListener("load", function () {
   var deleteButtons = document.querySelectorAll(".delete-button");
   deleteButtons.forEach(function (form) {
     form.addEventListener("submit", function (e) {
@@ -114,7 +114,7 @@ window.onload = function () {
       });
     });
   });
-};
+}, false);
 
 /***/ }),
 
