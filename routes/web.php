@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,31 @@ use Illuminate\Support\Facades\Auth;
 /********************************************
  Pagini pubbliche
 *********************************************/
-Route::get('/contact', 'MailController@index')->name('contact');
-Route::post('/contact', 'MailController@send')->name('contact.send');
+
+// route per cronojob
+Route::get('cronojob', function(){
+    Artisan::call('queue:work', ['--stop-when-empty' => true]);
+    dd('done');
+});
+
+Route::get('/contact', 'ContactController@index')->name('contact');
+Route::post('/contact', 'ContactController@send')->name('contact.send');
+
+Route::get('email-test', function(){
+  
+    $details = array(
+        'email' => 'your_email@gmail.com',
+        'title' => 'Titolo messaggio',
+        'body' => 'prova di messaggio',
+        'template' => 'Prova'
+    );
+  
+    dispatch(new App\Jobs\EmailQueueJob($details));
+  
+    dd('done');
+});
+
+
 
 /*
 Route::get('/', function () {

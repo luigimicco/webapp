@@ -38,8 +38,7 @@ class TemplateController extends Controller
      */
     public function create()
     {
-        $template = new Template();
-        return view('admin.templates.form', compact('template'));
+        return view('admin.templates.form');
     }
 
     /**
@@ -50,11 +49,13 @@ class TemplateController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(
-            [
-                'name' => 'required|string',
-            ]
-        );
+
+       
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ], [
+            'required' => 'Il contenuto è obbligatorio',
+        ]);        
 
         $data = $request->all();
         $data['active'] = false;
@@ -62,7 +63,7 @@ class TemplateController extends Controller
         $template->fill($data);
         $template->save();
 
-        return redirect()->route('admin.templates.show', compact('template'));
+        return redirect()->route('admin.templates.index');
     }
 
     /**
@@ -105,7 +106,7 @@ class TemplateController extends Controller
         $data = $request->all();
         $template->update($data);
 
-        return redirect()->route('admin.templates.show', compact('template'));
+        return redirect()->route('admin.templates.index');
     }
 
     /**

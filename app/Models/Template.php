@@ -18,7 +18,7 @@ class Template extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'name', 'active' ];
+    protected $fillable = [ 'name', 'body', 'active' ];
 
     public $sortable = ['name', 'active'];
 

@@ -763,6 +763,16 @@ return [
                 ],
             ],
         ],
+        'summernote' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/summernote/summernote-bs4.min.js',
+                ],
+            ],
+        ],        
 
     ],
 

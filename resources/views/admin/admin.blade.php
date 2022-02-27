@@ -39,7 +39,12 @@
     <span class="caption">Clear cache</span>
   </a> 
   
+  <a class="btn btn-warning btn-big " href="artisan/queue">
+    <i class="fas fa-hourglass"></i>
+    <span class="caption">Queue work</span>
+  </a> 
 
+  
 
 @stop
 

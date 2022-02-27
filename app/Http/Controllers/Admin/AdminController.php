@@ -53,6 +53,9 @@ class AdminController extends Controller
             case "optimize":
                 Artisan::call('optimize', ['--force' => true]);
                 break;
+            case "queue":
+                Artisan::call('queue:work', ['--stop-when-empty' => true]);
+                break;
         }
 
 

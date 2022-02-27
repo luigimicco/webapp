@@ -31,6 +31,20 @@
             <!-- /.card-header -->
             <div class="card-body p-2">
                 <p>Nome: <strong>{{ $template->name }}</strong></p>
+
+                <p>Anteprima:</p>
+                @php
+                $config = [
+                    "height" => "200",
+                    "toolbar" => [
+                    ],
+                ]
+                @endphp
+                                
+                <x-adminlte-text-editor name="teDisabled" :config="$config" disabled>
+                    {{ $template->body }}
+                </x-adminlte-text-editor>
+
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
@@ -43,6 +57,12 @@
 
 @endsection
 
-@section('scripts')
-        <script src="{{ asset('js/confirm-delete.js') }}"></script>
-@endsection
+@section('css')
+    <link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote-bs4.min.css') }}">
+@stop
+
+@section('js')
+    <script src="{{ asset('js/confirm-delete.js') }}"></script>
+    <script src="{{ asset('vendor/summernote/summernote-bs4.min.js') }}"></script>
+@stop

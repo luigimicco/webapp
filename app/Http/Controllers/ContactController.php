@@ -7,7 +7,7 @@ use App\Models\Lead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class MailController extends Controller
+class ContactController extends Controller
 {
     public function index()
     {
@@ -31,6 +31,7 @@ class MailController extends Controller
         $new_lead->save();
 
         Mail::to($new_lead->email)->send(new SendNewMail($new_lead));
+        
         return redirect()->route('contact')->with('alert', 'success')->with('alert-message', "Messaggio inviato con successo");
     }
 }

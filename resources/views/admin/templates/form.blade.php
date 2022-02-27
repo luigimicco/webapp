@@ -9,7 +9,7 @@
 @section('content')
 <div class="container">
 
-    @if(isset($user))
+    @if(isset($template))
         <form method="POST" action="{{route('admin.templates.update', $template->id)}}">
         @method('PATCH')
     @else
@@ -34,10 +34,9 @@
             <!-- /.card-header -->
             <div class="card-body p-2">
                 <div class="row">
-                    <div class="col-12">
-
+                    <div class="col-10">
                         <div class="form-group">
-                            <label for="nome">Nome</label>
+                            <label for="name">Nome</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                                 value="{{ old('name', $template->name ?? '' ) }}" required autocomplete="name" autofocus>
                             @error('name')
@@ -46,6 +45,31 @@
                                 </div>
                             @enderror
                         </div>
+                    </div>
+                    <div class="col-2">
+                        <label>Attivo</label>
+                        <div class="form-check @error('active') is-invalid @enderror">
+                            <div class="icheck-primary">
+                                @if($errors->any())
+                                    {{-- se ci sono degli errori di validazione signifca che bisogna recuperare i permission selezionati tramite la funzione old(), la quale restituisce un array plain --}}
+                                    <input name="active" type="checkbox" value="1"  id="active"
+                                        {{ old('active', false) ? 'checked' : '' }}>
+
+                                @else
+                                    {{-- se non sono presenti errori di validazione significa che la pagina è appena stata aperta per la prima volta, perciò bisogna recuperare i permission dalla relazione con il post, che è una collection --}}
+                                    <input name="active" type="checkbox" value="1" id="active"
+                                    @if(isset($template))
+                                        {{ ($template->active) ? 'checked' : '' }}
+                                    @endif                                               
+                                    >
+                                @endif
+                                <label  for="active" >&nbsp;</label>
+                            </div>
+
+                        </div>
+
+
+
 
                     </div>
                 </div>
@@ -54,7 +78,7 @@
 
                         @php
                         $config = [
-                            "height" => "100",
+                            "height" => "200",
                             "toolbar" => [
                                 // [groupName, [list of button]]
                                 ['style', ['bold', 'italic', 'underline', 'clear']],
@@ -70,8 +94,9 @@
                         ]
                         @endphp
                         <x-adminlte-text-editor name="body" label="Modello" 
-                            igroup-size="sm" placeholder="scrivi qui ..." :config="$config"/>
-
+                            igroup-size="xs" placeholder="definizione modello ..." :config="$config">
+                            {{ old('body', $template->body ?? '' ) }}
+                        </x-adminlte-text-editor>    
 
                     </div>
                 </div>
@@ -92,5 +117,9 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote-bs4.min.css') }}">
 @stop
 
+@section('js')
+    <script src="{{ asset('vendor/summernote/summernote-bs4.min.js') }}"></script>
+@stop
