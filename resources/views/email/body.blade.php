@@ -1,3 +1,3 @@
 <p>
-    {{$lead->message}}
+    {{$contact->message}}
 </p>
