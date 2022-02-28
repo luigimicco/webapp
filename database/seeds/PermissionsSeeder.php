@@ -3,7 +3,7 @@
 use App\Models\Permission;
 use Illuminate\Database\Seeder;
 
-class PermissionsTableSeeder extends Seeder
+class PermissionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        $permissions_name = ['completo', 'accettazione', 'laboratorio', 'cliente'];
+        $permissions_name = ['completo', 'parziale', 'cliente'];
         foreach ($permissions_name as $permission) {
             $new_permission = new Permission();
             $new_permission->name = $permission;

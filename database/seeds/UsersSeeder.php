@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use Illuminate\Support\Arr;
 
-class UsersTableSeeder extends Seeder
+class UsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         $new_user = new User();
         $new_user->nome = 'admin';
         $new_user->cognome = 'admin';
-        $new_user->email = 'admin@cartesio.it';
+        $new_user->email = 'admin@webapp.it';
         $new_user->password = bcrypt('password');
         $new_user->active = true;
         $new_user->save();
@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder
         $new_user = new User();
         $new_user->nome = 'Mario';
         $new_user->cognome = 'Rossi';  
-        $new_user->email = 'utente@cartesio.it';
+        $new_user->email = 'utente@webapp.it';
         $new_user->password = bcrypt('password');
         $new_user->active = true;
         $new_user->save();
@@ -40,12 +40,12 @@ class UsersTableSeeder extends Seeder
         $new_user = new User();
         $new_user->nome = 'Luigi';
         $new_user->cognome = 'Bianchi';  
-        $new_user->email = 'cliente@cartesio.it';
+        $new_user->email = 'cliente@webapp.it';
         $new_user->password = bcrypt('password');
         $new_user->active = true;
         $new_user->save();
         $new_user->roles()->attach(3);
-        $new_user->permissions()->attach(4);
+        $new_user->permissions()->attach(3);
 
 
         $roles_id = Role::pluck('id')->toArray();

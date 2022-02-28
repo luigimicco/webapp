@@ -1,17 +1,17 @@
 <?php return array (
   'adminlte' => 
   array (
-    'title' => 'Cartesio web',
+    'title' => 'WebApp',
     'title_prefix' => '',
     'title_postfix' => '',
     'use_ico_only' => false,
     'use_full_favicon' => true,
-    'logo' => '<b>Cartesio</b>Web',
-    'logo_img' => 'vendor/adminlte/dist/img/CartesioWebLogo.png',
+    'logo' => '<b>Web</b>App',
+    'logo_img' => 'vendor/adminlte/dist/img/logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => NULL,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Cartesio',
+    'logo_img_alt' => 'WebApp',
     'usermenu_enabled' => true,
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-default',
@@ -619,7 +619,7 @@
       ),
     ),
     'livewire' => false,
-    'copyright' => 'Cartesio',
+    'copyright' => 'Webapp',
     'version' => '1.0.0',
     'contact_url' => 'contact',
   ),
@@ -751,7 +751,7 @@
   'breadcrumbs' => 
   array (
     'view' => 'partials.breadcrumbs',
-    'files' => 'C:\\Work\\CartesioWeb\\cartesio\\routes/breadcrumbs.php',
+    'files' => 'C:\\Work\\WebApp\\webapp\\routes/breadcrumbs.php',
     'unnamed-route-exception' => true,
     'missing-route-bound-breadcrumb-exception' => false,
     'invalid-named-breadcrumb-exception' => true,
@@ -812,7 +812,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\Work\\CartesioWeb\\cartesio\\storage\\framework/cache/data',
+        'path' => 'C:\\Work\\WebApp\\webapp\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -946,7 +946,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'cartesio',
+        'database' => 'webapp',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -956,7 +956,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'cartesio',
+        'database' => 'webapp',
         'username' => 'luigi',
         'password' => 'luigi',
         'unix_socket' => '',
@@ -976,7 +976,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'cartesio',
+        'database' => 'webapp',
         'username' => 'luigi',
         'password' => 'luigi',
         'charset' => 'utf8',
@@ -991,7 +991,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'cartesio',
+        'database' => 'webapp',
         'username' => 'luigi',
         'password' => 'luigi',
         'charset' => 'utf8',
@@ -1035,12 +1035,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Work\\CartesioWeb\\cartesio\\storage\\app',
+        'root' => 'C:\\Work\\WebApp\\webapp\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Work\\CartesioWeb\\cartesio\\storage\\app/public',
+        'root' => 'C:\\Work\\WebApp\\webapp\\storage\\app/public',
         'url' => 'http://127.0.0.1:8000/storage',
         'visibility' => 'public',
       ),
@@ -1056,7 +1056,7 @@
     ),
     'links' => 
     array (
-      'C:\\Work\\CartesioWeb\\cartesio\\public\\storage' => 'C:\\Work\\CartesioWeb\\cartesio\\storage\\app/public',
+      'C:\\Work\\WebApp\\webapp\\public\\storage' => 'C:\\Work\\WebApp\\webapp\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -1094,13 +1094,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\Work\\CartesioWeb\\cartesio\\storage\\logs/laravel.log',
+        'path' => 'C:\\Work\\WebApp\\webapp\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\Work\\CartesioWeb\\cartesio\\storage\\logs/laravel.log',
+        'path' => 'C:\\Work\\WebApp\\webapp\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -1150,7 +1150,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\Work\\CartesioWeb\\cartesio\\storage\\logs/laravel.log',
+        'path' => 'C:\\Work\\WebApp\\webapp\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -1197,7 +1197,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\Work\\CartesioWeb\\cartesio\\resources\\views/vendor/mail',
+        0 => 'C:\\Work\\WebApp\\webapp\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -1275,7 +1275,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\Work\\CartesioWeb\\cartesio\\storage\\framework/sessions',
+    'files' => 'C:\\Work\\WebApp\\webapp\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -1295,9 +1295,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\Work\\CartesioWeb\\cartesio\\resources\\views',
+      0 => 'C:\\Work\\WebApp\\webapp\\resources\\views',
     ),
-    'compiled' => 'C:\\Work\\CartesioWeb\\cartesio\\storage\\framework\\views',
+    'compiled' => 'C:\\Work\\WebApp\\webapp\\storage\\framework\\views',
     'expires' => true,
   ),
   'flare' => 

@@ -50324,10 +50324,10 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Work\CartesioWeb\cartesio\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Work\CartesioWeb\cartesio\resources\sass\app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! C:\Work\CartesioWeb\cartesio\resources\sass\login.scss */"./resources/sass/login.scss");
-module.exports = __webpack_require__(/*! C:\Work\CartesioWeb\cartesio\resources\sass\buttons.scss */"./resources/sass/buttons.scss");
+__webpack_require__(/*! C:\Work\WebApp\webapp\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Work\WebApp\webapp\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Work\WebApp\webapp\resources\sass\login.scss */"./resources/sass/login.scss");
+module.exports = __webpack_require__(/*! C:\Work\WebApp\webapp\resources\sass\buttons.scss */"./resources/sass/buttons.scss");
 
 
 /***/ })

@@ -14,10 +14,10 @@ return [
     |
     */
 
-    'title' => 'Cartesio web',
+    'title' => 'WebApp',
     'title_prefix' => '',
     'title_postfix' => '',
-    'copyright' => 'Cartesio',
+    'copyright' => 'Webapp',
     'version' => '1.0.0',
 
     /*
@@ -47,12 +47,12 @@ return [
     |
     */
 
-    'logo' => '<b>Cartesio</b>Web',
-    'logo_img' => 'vendor/adminlte/dist/img/CartesioWebLogo.png',
+    'logo' => '<b>Web</b>App',
+    'logo_img' => 'vendor/adminlte/dist/img/logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Cartesio',
+    'logo_img_alt' => 'WebApp',
 
     /*
     |--------------------------------------------------------------------------

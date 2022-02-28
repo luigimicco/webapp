@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 
 
-class RolesTableSeeder extends Seeder
+class RolesSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -125,7 +125,7 @@ window.addEventListener("load", function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Work\CartesioWeb\cartesio\resources\js\confirm-delete.js */"./resources/js/confirm-delete.js");
+module.exports = __webpack_require__(/*! C:\Work\WebApp\webapp\resources\js\confirm-delete.js */"./resources/js/confirm-delete.js");
 
 
 /***/ })
