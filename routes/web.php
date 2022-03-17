@@ -19,15 +19,6 @@ use Illuminate\Support\Facades\Artisan;
  Pagini pubbliche
 *********************************************/
 
-// route per cronojob
-Route::get('cronojob', function(){
-    Artisan::call('queue:work', ['--stop-when-empty' => true]);
-    dd('done');
-});
-
-Route::get('/contact', 'ContactController@index')->name('contact');
-Route::post('/contact', 'ContactController@send')->name('contact.send');
-
 Route::get('email-test', function(){
   
     $details = array(
@@ -43,6 +34,8 @@ Route::get('email-test', function(){
 });
 
 
+Route::get('/contact', 'ContactController@index')->name('contact');
+Route::post('/contact', 'ContactController@send')->name('contact.send');
 
 /*
 Route::get('/', function () {
@@ -75,8 +68,8 @@ Route::put('/admin/acp', function () {
  Pagini accessibili solo ad admin
 *********************************************/
 Route::middleware('role:admin')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
-    Route::get('/acp', 'AdminController@index')->name('admin.acp');;
-    Route::get('/artisan/{action}', 'AdminController@artisan')->name('admin.artisan');;
+    Route::get('/acp', 'AdminController@index')->name('acp');;
+    Route::get('/artisan/{action}', 'AdminController@artisan')->name('artisan');;
 
     Route::resource('/users', 'UserController');
     Route::resource('/permissions', 'PermissionController');
@@ -86,7 +79,6 @@ Route::middleware('role:admin')->name('admin.')->prefix('admin')->namespace('Adm
         return abort(404);
     });
 });
-
 
 
 Route::get('{any?}', function () {

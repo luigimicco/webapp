@@ -58,8 +58,7 @@ class AdminController extends Controller
                 break;
         }
 
-
-        return redirect()->route('admin.admin.acp')->with('alert-message', Artisan::output() )->with('alert-type', 'success'); 
+        return redirect()->route('admin.acp')->with('alert-message', Artisan::output() )->with('alert-type', 'success'); 
 //        return ($url = session()->get('backUrl')) ? redirect($url) : redirect()->route('admin.admin.acp');
     }
 

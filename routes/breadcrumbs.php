@@ -56,20 +56,20 @@ Breadcrumbs::for('profile', function (BreadcrumbTrail $trail) {
 });
 
 // Home > Pannello di controllo
-Breadcrumbs::for('admin.admin.acp', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('admin.acp', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Pannello di controllo', route('admin.admin.acp'));
+    $trail->push('Pannello di controllo', route('admin.acp'));
 });
 
 // CRUD
-Breadcrumbs::resource('admin.admin.acp', 'admin.users', 'Utenti', 'Utente');
-Breadcrumbs::resource('admin.admin.acp', 'admin.permissions', 'Permessi','Permesso');
-Breadcrumbs::resource('admin.admin.acp', 'admin.templates', 'Modelli', 'Modello');
+Breadcrumbs::resource('admin.acp', 'admin.users', 'Utenti', 'Utente');
+Breadcrumbs::resource('admin.acp', 'admin.permissions', 'Permessi','Permesso');
+Breadcrumbs::resource('admin.acp', 'admin.templates', 'Modelli', 'Modello');
 
 
 // Home > Pannello di controllo > Command
-Breadcrumbs::for('admin.admin.artisan', function (BreadcrumbTrail $trail) {
-  $trail->parent('admin.admin.acp');
-  $trail->push('Artisan command', route('admin.admin.artisan'));
+Breadcrumbs::for('admin.artisan', function (BreadcrumbTrail $trail) {
+  $trail->parent('admin.acp');
+  $trail->push('Artisan command', route('admin.artisan'));
 });
 

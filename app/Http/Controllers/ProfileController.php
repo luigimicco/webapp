@@ -81,7 +81,7 @@ class ProfileController extends Controller
             $filename = (string) $image->encode();
             $imagename = $avatar->hashName('profiles');
             Storage::put($imagename, $filename);
-                $data['image'] = substr($imagename, 9);
+                $data['image'] = substr($imagename, strlen('profiles') + 1);
 
         }
 
