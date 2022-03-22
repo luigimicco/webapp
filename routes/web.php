@@ -79,7 +79,7 @@ Route::middleware('role:admin')->name('admin.')->prefix('admin')->namespace('Adm
         return abort(404);
     });
 });
-
+ 
 
 Route::get('{any?}', function () {
     return redirect()->route('home')->with('alert-message', 'Pagina non presente.')->with('alert-type', 'warning'); // view('guest.home');
