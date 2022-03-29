@@ -19,14 +19,13 @@ class UserController extends Controller
 
         $roles = Role::all();
         if ($search) {
-            $items = User::where('nome', 'LIKE', '%'.$search.'%')
-            ->orWhere('cognome', 'LIKE', '%'.$search.'%')
-            ->orWhere('email', 'LIKE', '%'.$search.'%')
-            ->sortable(['id'])->paginate($ipp);
+            $items = User::where('nome', 'LIKE', '%' . $search . '%')
+                ->orWhere('cognome', 'LIKE', '%' . $search . '%')
+                ->orWhere('email', 'LIKE', '%' . $search . '%')
+                ->sortable(['id'])->paginate($ipp);
         } else {
-          $items = User::sortable(['id'])->paginate($ipp);
+            $items = User::sortable(['id'])->paginate($ipp);
         }
-        
 
         return view('admin.users.index', compact('items', 'roles', 'ipp', 'search'));
     }
@@ -40,8 +39,8 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $permissions = Permission::all();
-        return view('admin.users.form', compact('roles', 'permissions'));        
-    }    
+        return view('admin.users.form', compact('roles', 'permissions'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -56,8 +55,8 @@ class UserController extends Controller
             'email' => 'required|unique:users',
             'nome' => 'required',
             'cognome' => 'required',
-            'password' => 'min:8|confirmed', 
-            'email' => Rule::unique('users'),            
+            'password' => 'min:8|confirmed',
+            'email' => Rule::unique('users'),
             'permissions' => 'exists:permissions,id'
         ], [
             'required' => 'Il contenuto è obbligatorio',
@@ -76,13 +75,13 @@ class UserController extends Controller
         $user->save();
 
         // verifico se sono stati selezionati dei ruoli
-        if(array_key_exists('roles', $data)) {
+        if (array_key_exists('roles', $data)) {
             // aggiungo i ruoli all'utente
             $user->roles()->sync($data['roles']);
         }
-        
+
         // verifico se sono stati selezionati dei profili
-        if(array_key_exists('permissions', $data)) {
+        if (array_key_exists('permissions', $data)) {
             // aggiungo i profili all'utente
             $user->permissions()->sync($data['permissions']);
         }
@@ -99,7 +98,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        
+
         $roles = Role::all();
         return view('admin.users.show', compact('user', 'roles'));
     }
@@ -113,13 +112,31 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
-        $permissions= Permission::all();
+        $permissions = Permission::all();
         $roleIds = $user->roles->pluck('id')->toArray();
         $permissionIds = $user->permissions->pluck('id')->toArray();
-        return view('admin.users.form', compact('user', 'roles','permissions', 'roleIds', 'permissionIds'));
-    } 
-    
-    
+        return view('admin.users.form', compact('user', 'roles', 'permissions', 'roleIds', 'permissionIds'));
+    }
+
+
+    /**
+     * Toggle on active field.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function enableToggle(User $user)
+    {
+        $user->active = !$user->active;
+        $user->save();
+
+        $message = ($user->active) ? "abilitato" : "disabilitato";
+        return redirect()->route('admin.users.index')->with('alert', 'success')->with('alert-message', "$user->nome&nbsp;$user->cognome&nbsp;<b>$message</b>&nbsp;con successo");
+
+    }
+
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -130,49 +147,41 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
 
-        if ( Auth::isAdmin()) {
+        $request->validate([
+            'nome' => 'required',
+            'cognome' => 'required',
+            'permissions' => 'exists:permissions,id',
+            'password' => 'nullable|min:8|confirmed',
+            'email' => Rule::unique('users')->ignore($user->id),
+        ], [
+            'required' => 'Il contenuto è obbligatorio',
+        ]);
 
+        $data = $request->all();
 
-            $request->validate([
-                'nome' => 'required',
-                'cognome' => 'required',
-                'permissions' => 'exists:permissions,id',
-                'password' => 'nullable|min:8|confirmed', 
-                'email' => Rule::unique('users')->ignore($user->id),                
-            ], [
-                'required' => 'Il contenuto è obbligatorio',
-            ]);
-
-            $data = $request->all();
-
-            if ($data['password'] == "") {
-                unset($data['password']);
-                unset($data['password_confirmation']);
-            } else {
-                $data['password'] = bcrypt($data['password']);
-            }
-                        
-            $user->update($data);
-
-            if (!$data) {
-                $user->roles()->detach();
-                $user->permissions()->detach();
-            }
-
-            if(array_key_exists('roles', $data)) {
-                $user->roles()->sync($data['roles']);
-            }
-
-            if(array_key_exists('permissions', $data)) {
-                $user->permissions()->sync($data['permissions']);
-            }
-
-            return redirect()->route('admin.users.index')->with('alert', 'success')->with('alert-message', "$user->name modificato con successo");
-
-//            return redirect()->route('admin.users.show', compact('user'));
+        if ($data['password'] == "") {
+            unset($data['password']);
+            unset($data['password_confirmation']);
         } else {
-            return redirect()->route('admin.dashboard');
+            $data['password'] = bcrypt($data['password']);
         }
+
+        $user->update($data);
+
+        if (!$data) {
+            $user->roles()->detach();
+            $user->permissions()->detach();
+        }
+
+        if (array_key_exists('roles', $data)) {
+            $user->roles()->sync($data['roles']);
+        }
+
+        if (array_key_exists('permissions', $data)) {
+            $user->permissions()->sync($data['permissions']);
+        }
+
+        return redirect()->route('admin.users.index')->with('alert', 'success')->with('alert-message', "$user->name modificato con successo");
     }
 
     /**
@@ -187,8 +196,5 @@ class UserController extends Controller
         $user->permissions()->sync([]);
         $user->delete();
         return redirect()->route('admin.users.index')->with('alert-message', 'Utente eliminato con successo.')->with('alert-type', 'success');
-    }    
-   
-
-
+    }
 }

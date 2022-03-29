@@ -16,6 +16,7 @@
         <div class="card card-primary card-outline">
             <div class="card-header p-0 d-flex justify-content-end">
                 @if (!empty($items) && count($items))
+                    <!-- items per page -->
                     <div class="mr-auto p-2 d-flex align-items-center">
                         <span>Elementi per pagina&nbsp;</span>
                         <form>
@@ -32,6 +33,7 @@
                             };
                         </script>                    
                     </div>
+                    <!-- search bar -->
                     <div class="mr-auto p-2 d-flex flex-fill align-items-center">
                         <div class="input-group input-group-sm ">
                             <input id="search" type="text" class="form-control" value="{{ $search }}" placeholder="cerca ..." >
@@ -45,6 +47,7 @@
                             };
                         </script>                    
                     </div>
+
                 @endif
                 <div class="p-2 d-flex">
                     {!! $items->appends(\Request::except('page'))->render() !!}&nbsp;<a class="btn btn-sm btn-info" href="{{ route('admin.users.create') }}"><i class="fas fa-plus"></i>&nbsp;Nuovo</a>
@@ -94,13 +97,22 @@
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                                 <a href="{{ route('admin.users.show', $item->id) }}" class="dropdown-item"><i class="fas fa-fw fa-eye"></i>&nbsp;Mostra</a>
                                                 <a href="{{ route('admin.users.edit', $item->id) }}"
-                                                class="dropdown-item"><i class="fas fa-fw fa-edit"></i>&nbsp;Modifica</a>
-                                                <div class="dropdown-divider"></div>
-                                                <form class="delete-button" action="{{ route('admin.users.destroy', $item->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="dropdown-item text-red" ><i class="fas fa-fw fa-trash"></i>&nbsp;Cancella</button>
-                                                </form>
+                                                class="dropdown-item"><i class="fas fa-fw fa-edit"></i>&nbsp;Modifica {{$item->isAdmin()}}</a>
+
+
+                                                @if (!in_array('admin', $item->roles->pluck('name')->toArray()))  
+                                                    <form action="{{ route('admin.users.enable', $item->id) }}" method="POST">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                        <button type="submit" class="dropdown-item" ><i class="fas fa-fw {{$item->active ? 'fa-user-slash' : 'fa-user' }}"></i>&nbsp;{{$item->active ? 'Disabilita' : 'Abilita' }}</button>
+                                                    </form>
+                                                    <div class="dropdown-divider"></div>
+                                                    <form class="delete-button" action="{{ route('admin.users.destroy', $item->id) }}" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="dropdown-item text-red" ><i class="fas fa-fw fa-trash"></i>&nbsp;Cancella</button>
+                                                    </form>
+                                                @endif
                                             </div>
                                         </div>
                                     </td>

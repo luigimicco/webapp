@@ -69,11 +69,13 @@ Route::put('/admin/acp', function () {
 *********************************************/
 Route::middleware('role:admin')->name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/acp', 'AdminController@index')->name('acp');;
-    Route::get('/artisan/{action}', 'AdminController@artisan')->name('artisan');;
+    Route::get('/artisan/{action}', 'AdminController@artisan')->name('artisan');
 
-    Route::resource('/users', 'UserController');
-    Route::resource('/permissions', 'PermissionController');
-    Route::resource('/templates', 'TemplateController');
+    // toggle on enable/disable
+    Route::patch('/users/{user}/enable', 'UserController@enableToggle')->name('users.enable');
+    Route::resource('users', 'UserController');
+    Route::resource('permissions', 'PermissionController');
+    Route::resource('templates', 'TemplateController');
 
     Route::get('/{any}', function () {
         return abort(404);
