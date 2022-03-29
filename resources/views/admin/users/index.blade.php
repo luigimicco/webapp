@@ -16,6 +16,7 @@
         <div class="card card-primary card-outline">
             <div class="card-header p-0 d-flex justify-content-end">
                 @if (!empty($items) && count($items))
+                    <!-- items per page -->
                     <div class="mr-auto p-2 d-flex align-items-center">
                         <span>Elementi per pagina&nbsp;</span>
                         <form>
@@ -32,6 +33,7 @@
                             };
                         </script>                    
                     </div>
+                    <!-- search bar -->
                     <div class="mr-auto p-2 d-flex flex-fill align-items-center">
                         <div class="input-group input-group-sm ">
                             <input id="search" type="text" class="form-control" value="{{ $search }}" placeholder="cerca ..." >
@@ -45,6 +47,7 @@
                             };
                         </script>                    
                     </div>
+
                 @endif
                 <div class="p-2 d-flex">
                     {!! $items->appends(\Request::except('page'))->render() !!}&nbsp;<a class="btn btn-sm btn-info" href="{{ route('admin.users.create') }}"><i class="fas fa-plus"></i>&nbsp;Nuovo</a>
