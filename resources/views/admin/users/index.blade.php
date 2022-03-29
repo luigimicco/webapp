@@ -94,13 +94,22 @@
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                                 <a href="{{ route('admin.users.show', $item->id) }}" class="dropdown-item"><i class="fas fa-fw fa-eye"></i>&nbsp;Mostra</a>
                                                 <a href="{{ route('admin.users.edit', $item->id) }}"
-                                                class="dropdown-item"><i class="fas fa-fw fa-edit"></i>&nbsp;Modifica</a>
-                                                <div class="dropdown-divider"></div>
-                                                <form class="delete-button" action="{{ route('admin.users.destroy', $item->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="dropdown-item text-red" ><i class="fas fa-fw fa-trash"></i>&nbsp;Cancella</button>
-                                                </form>
+                                                class="dropdown-item"><i class="fas fa-fw fa-edit"></i>&nbsp;Modifica {{$item->isAdmin()}}</a>
+
+
+                                                @if (!in_array('admin', $item->roles->pluck('name')->toArray()))  
+                                                    <form action="{{ route('admin.users.enable', $item->id) }}" method="POST">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                        <button type="submit" class="dropdown-item" ><i class="fas fa-fw {{$item->active ? 'fa-user-slash' : 'fa-user' }}"></i>&nbsp;{{$item->active ? 'Disabilita' : 'Abilita' }}</button>
+                                                    </form>
+                                                    <div class="dropdown-divider"></div>
+                                                    <form class="delete-button" action="{{ route('admin.users.destroy', $item->id) }}" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="dropdown-item text-red" ><i class="fas fa-fw fa-trash"></i>&nbsp;Cancella</button>
+                                                    </form>
+                                                @endif
                                             </div>
                                         </div>
                                     </td>
