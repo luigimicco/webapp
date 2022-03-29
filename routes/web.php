@@ -71,6 +71,7 @@ Route::middleware('role:admin')->name('admin.')->prefix('admin')->namespace('Adm
     Route::get('/acp', 'AdminController@index')->name('acp');;
     Route::get('/artisan/{action}', 'AdminController@artisan')->name('artisan');
 
+    // toggle on enable/disable
     Route::patch('/users/{user}/enable', 'UserController@enableToggle')->name('users.enable');
     Route::resource('users', 'UserController');
     Route::resource('permissions', 'PermissionController');
