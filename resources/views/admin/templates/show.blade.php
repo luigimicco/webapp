@@ -63,6 +63,6 @@
 @stop
 
 @section('js')
-    <script src="{{ asset('js/confirm-delete.js') }}"></script>
+
     <script src="{{ asset('vendor/summernote/summernote-bs4.min.js') }}"></script>
 @stop

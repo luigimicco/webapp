@@ -131,7 +131,7 @@ class UserController extends Controller
         $user->save();
 
         $message = ($user->active) ? "abilitato" : "disabilitato";
-        return redirect()->route('admin.users.index')->with('alert', 'success')->with('alert-message', "$user->nome&nbsp;$user->cognome&nbsp;<b>$message</b>&nbsp;con successo");
+        return redirect()->route('admin.users.index')->with('alert-type', 'success')->with('alert-message', "$user->nome&nbsp;$user->cognome&nbsp;<b>$message</b>&nbsp;con successo");
 
     }
 
@@ -181,7 +181,7 @@ class UserController extends Controller
             $user->permissions()->sync($data['permissions']);
         }
 
-        return redirect()->route('admin.users.index')->with('alert', 'success')->with('alert-message', "$user->name modificato con successo");
+        return redirect()->route('admin.users.index')->with('alert-type', 'success')->with('alert-message', "Utente&nbsp;<b>$user->nome&nbsp;$user->cognome</b>&nbsp;modificato con successo");
     }
 
     /**
@@ -195,6 +195,6 @@ class UserController extends Controller
         $user->roles()->sync([]);
         $user->permissions()->sync([]);
         $user->delete();
-        return redirect()->route('admin.users.index')->with('alert-message', 'Utente eliminato con successo.')->with('alert-type', 'success');
+        return redirect()->route('admin.users.index')->with('alert-type', 'success')->with('alert-message', "Utente&nbsp;<b>$user->nome&nbsp;$user->cognome</b>&nbsp;eliminato con successo.");
     }
 }
