@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -93,26 +93,11 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-window.addEventListener("load", function () {
-  var popup = document.getElementById('popup_message');
-
-  if (popup) {
-    // show a message in a toast
-    Swal.fire({
-      toast: true,
-      animation: false,
-      title: popup.dataset.message,
-      type: popup.dataset.type,
-      position: 'top-right',
-      timer: 3000,
-      showConfirmButton: false
-    });
-  }
-}, false);
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Work\\WebApp\\webapp\\resources\\js\\popup-message.js'");
 
 /***/ }),
 
-/***/ 2:
+/***/ 3:
 /*!*********************************************!*\
   !*** multi ./resources/js/popup-message.js ***!
   \*********************************************/

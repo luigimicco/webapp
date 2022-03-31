@@ -22,3 +22,7 @@
         </div>
     </div>
 @stop
+
+@section('js')
+    <script src="{{ asset('js/commons.js') }}"></script>
+@stop

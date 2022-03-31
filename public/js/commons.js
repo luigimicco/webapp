@@ -81,30 +81,97 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/confirm-delete.js":
-/*!****************************************!*\
-  !*** ./resources/js/confirm-delete.js ***!
-  \****************************************/
+/***/ "./resources/js/commons.js":
+/*!*********************************!*\
+  !*** ./resources/js/commons.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Work\\WebApp\\webapp\\resources\\js\\confirm-delete.js'");
+$(function () {
+  // Boostrap tooltip
+  $("body").tooltip({
+    selector: '[data-toggle=tooltip]'
+  }); // pop up for messages and warnings
+
+  var popup = document.getElementById('popup_message');
+
+  if (popup) {
+    // show a message in a toast
+    Swal.fire({
+      toast: true,
+      animation: false,
+      icon: popup.dataset.type,
+      title: popup.dataset.message,
+      type: popup.dataset.type,
+      position: 'top-right',
+      timer: 3000,
+      showConfirmButton: false
+    });
+  } // confirm on delete button
+
+
+  var deleteButtons = document.querySelectorAll(".delete-button");
+  deleteButtons.forEach(function (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var doubleconfirm = form.getAttribute('data-type') ? form.getAttribute('data-type') == 'double-confirm' ? true : false : false;
+      Swal.fire({
+        title: 'Sei sicuro ?',
+        text: "Questa operazione è irreversibile !",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Annulla',
+        confirmButtonText: 'Si, procedi !'
+      }).then(function (result) {
+        if (result.value) {
+          // if double confirm
+          if (doubleconfirm) {
+            Swal.fire({
+              title: 'Confermare la cancellazione',
+              html: "Per confermare la cancellazione digita la parola <b>ESEGUI</b>",
+              input: 'text',
+              type: 'warning',
+              inputPlaceholder: 'ESEGUI',
+              showCancelButton: true,
+              confirmButtonText: 'Conferma',
+              cancelButtonText: 'Annulla',
+              showLoaderOnConfirm: true,
+              allowOutsideClick: function allowOutsideClick() {
+                return !Swal.isLoading();
+              },
+              preConfirm: function preConfirm(txt) {
+                return txt.toUpperCase() == "ESEGUI";
+              }
+            }).then(function (result) {
+              form.submit();
+            });
+          } else {
+            form.submit();
+          }
+        }
+      });
+    });
+  });
+});
 
 /***/ }),
 
-/***/ 2:
-/*!**********************************************!*\
-  !*** multi ./resources/js/confirm-delete.js ***!
-  \**********************************************/
+/***/ 1:
+/*!***************************************!*\
+  !*** multi ./resources/js/commons.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Work\WebApp\webapp\resources\js\confirm-delete.js */"./resources/js/confirm-delete.js");
+module.exports = __webpack_require__(/*! C:\Work\WebApp\webapp\resources\js\commons.js */"./resources/js/commons.js");
 
 
 /***/ })

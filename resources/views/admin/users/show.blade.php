@@ -97,6 +97,6 @@
 @endsection
 
 @section('js')
-        <script src="{{ asset('js/confirm-delete.js') }}"></script>
+
         <script src="{{ asset('js/popup-message.js') }}"></script>
 @stop
