@@ -84,7 +84,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-
+                      Creato il:  <b>{{ $user->getFormattedDate('created_at') }}</b>, ultimo aggiornamento: <b>{{ $user->getFormattedDate('updated_at') }}</b>
                     </div>
                     <!-- /.card-footer-->
                 </div>

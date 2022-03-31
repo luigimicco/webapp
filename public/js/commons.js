@@ -120,7 +120,7 @@ $(function () {
   deleteButtons.forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var doubleconfirm = form.getAttribute('data-type') ? form.getAttribute('data-type') == 'double-confirm' ? true : false : false;
+      var doubleconfirm = e.target.classList.contains('double-confirm');
       Swal.fire({
         title: 'Sei sicuro ?',
         text: "Questa operazione è irreversibile !",

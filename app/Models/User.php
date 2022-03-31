@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -83,6 +84,12 @@ class User extends Authenticatable
         // return './storage/avatars/' . $image; //"https://i.pravatar.cc/160?u={$id}";
 
     }
+
+    public function getFormattedDate($date, $format = 'd-m-Y H:i') {
+        return Carbon::create($this->$date)->format($format);
+    }
+
+
 
 
     // ************************************************************

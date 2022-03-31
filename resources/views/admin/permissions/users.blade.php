@@ -1,19 +1,23 @@
 @extends('layouts.lte')
 
-@section('title', 'Archivio utenti')
+@section('title', 'Utenti con medesimi permessi')
 
 @section('content_header')
     {{ Breadcrumbs::render() }}
 @stop
 
 @section('content')
-    @include('partials.popup')
-
     <div class="container">
-        <div class="card card-primary card-outline">
-            @include('partials.toptablelist', ['addroute' => route('admin.users.create'), 'addlabel' => 'Nuovo'])
 
-            <div class="card-body p-0">
+
+        <div class="card card-primary card-outline direct-chat direct-chat-primary">
+            <div class="card-header">
+              <h3 class="card-title"><strong>{{ $permission->name }}</strong></h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-2">
+
+
                 @if (!empty($items) && count($items))
                     <table class="table table-sm table-hover table-striped table-condensed w-100">
                         <thead>
@@ -52,8 +56,7 @@
                                             <span class="right badge " style="background-color:{{$role->color}} ">{{$role->name}}</span>&nbsp;
                                         @empty
                                             -
-                                        @endforelse                                    
-
+                                        @endforelse
                                         
                                         @forelse ($item->permissions as $permission)
                                             <a href="{{ route('admin.permissions.users', $permission->id) }}">{{ $permission->name }}</a>{{ !$loop->last ? ',' : '' }}
@@ -79,7 +82,7 @@
                                                         <button type="submit" class="dropdown-item" ><i class="fas fa-fw {{$item->active ? 'fa-user-slash' : 'fa-user' }}"></i>&nbsp;{{$item->active ? 'Disabilita' : 'Abilita' }}</button>
                                                     </form>
                                                     <div class="dropdown-divider"></div>
-                                                    <form class="delete-button double-confirm" action="{{ route('admin.users.destroy', $item->id) }}" method="POST">
+                                                    <form class="delete-button" data-type="double-confirm" action="{{ route('admin.users.destroy', $item->id) }}" method="POST">
                                                         @method('DELETE')
                                                         @csrf
                                                         <button type="submit" class="dropdown-item text-red" ><i class="fas fa-fw fa-trash"></i>&nbsp;Cancella</button>
@@ -97,19 +100,19 @@
                     <div class="jumbotron m-2">
                         <h2 class="text-center">Nessun elemento da mostrare</h2>
                     </div>  
-                @endif            
+                @endif     
+
+
+
+
             </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
 
-            @include('partials.bottomtablelist')
-
-        </div>
+            </div>
+            <!-- /.card-footer-->
+          </div>
 
     </div>
 
-@stop
-
-
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
+@endsection

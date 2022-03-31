@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Permission;
+use App\Models\Role;
 
 class PermissionController extends Controller
 {
@@ -117,4 +118,19 @@ class PermissionController extends Controller
         $permission->delete();
         return redirect()->route('admin.permissions.index')->with('alert-message', 'Profilo eliminato con successo.')->with('alert-type', 'success');
     }
+
+    /**
+     * Shows a list of related users for the specified permission
+     * 
+     * @param Permission $permission
+     * @return \Illuminate\Http\Response
+     * 
+     */
+    public function users(Permission $permission) {
+
+        $items = $permission->users;
+
+        return view('admin.permissions.users', compact('permission', 'items'));
+    }
+
 }

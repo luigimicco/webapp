@@ -17,7 +17,6 @@ class UserController extends Controller
         $ipp = $request->ipp ?? 10; // items per page
         $search = $request->search ?? '';
 
-        $roles = Role::all();
         if ($search) {
             $items = User::where('nome', 'LIKE', '%' . $search . '%')
                 ->orWhere('cognome', 'LIKE', '%' . $search . '%')
@@ -27,7 +26,7 @@ class UserController extends Controller
             $items = User::sortable(['id'])->paginate($ipp);
         }
 
-        return view('admin.users.index', compact('items', 'roles', 'ipp', 'search'));
+        return view('admin.users.index', compact('items', 'ipp', 'search'));
     }
 
     /**
@@ -131,7 +130,8 @@ class UserController extends Controller
         $user->save();
 
         $message = ($user->active) ? "abilitato" : "disabilitato";
-        return redirect()->route('admin.users.index')->with('alert-type', 'success')->with('alert-message', "$user->nome&nbsp;$user->cognome&nbsp;<b>$message</b>&nbsp;con successo");
+//        return redirect()->route('admin.users.index')->with('alert-type', 'success')->with('alert-message', "$user->nome&nbsp;$user->cognome&nbsp;<b>$message</b>&nbsp;con successo");
+        return redirect()->back()->with('alert-type', 'success')->with('alert-message', "$user->nome&nbsp;$user->cognome&nbsp;<b>$message</b>&nbsp;con successo");
 
     }
 
@@ -195,6 +195,7 @@ class UserController extends Controller
         $user->roles()->sync([]);
         $user->permissions()->sync([]);
         $user->delete();
-        return redirect()->route('admin.users.index')->with('alert-type', 'success')->with('alert-message', "Utente&nbsp;<b>$user->nome&nbsp;$user->cognome</b>&nbsp;eliminato con successo.");
+//        return redirect()->route('admin.users.index')->with('alert-type', 'success')->with('alert-message', "Utente&nbsp;<b>$user->nome&nbsp;$user->cognome</b>&nbsp;eliminato con successo.");
+        return redirect()->back()->with('alert-type', 'success')->with('alert-message', "Utente&nbsp;<b>$user->nome&nbsp;$user->cognome</b>&nbsp;eliminato con successo.");
     }
 }
