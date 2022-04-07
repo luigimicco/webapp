@@ -40,24 +40,24 @@ Breadcrumbs::macro('resource', function (string $parent, string $name, string $t
 
 // Home
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
-    $trail->push('Bacheca', route('home'));
+    $trail->push('Bacheca', route('dashboard'));
 });
 
 Breadcrumbs::for('errors.404', function (BreadcrumbTrail $trail) {
-  $trail->parent('home');
+  $trail->parent('dashboard');
   $trail->push('Pagina non trovata');
 });
 
 
 // Home > Profilo
 Breadcrumbs::for('profile', function (BreadcrumbTrail $trail) {
-    $trail->parent('home');
+    $trail->parent('dashboard');
     $trail->push('Profilo', route('profile'));
 });
 
 // Home > Pannello di controllo
 Breadcrumbs::for('admin.acp', function (BreadcrumbTrail $trail) {
-    $trail->parent('home');
+    $trail->parent('dashboard');
     $trail->push('Pannello di controllo', route('admin.acp'));
 });
 
