@@ -6,13 +6,12 @@
 
 require('./bootstrap');
 
-
-window.axios = require('axios');
 window.Vue = require('vue');
+window.axios = require('axios');
 
 import App from './components/App.vue';
 
-const app = new Vue({
+const root = new Vue({
     el: '#root',
     render: h => h(App),
 });

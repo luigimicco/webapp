@@ -37,20 +37,21 @@ Route::get('email-test', function(){
 Route::get('/contact', 'ContactController@index')->name('contact');
 Route::post('/contact', 'ContactController@send')->name('contact.send');
 
+
 /*
 Route::get('/', function () {
     return view('welcome');
 });
 */
 
-Auth::routes();
+Auth::routes(['register' => true]);
 
 /********************************************
  Pagini accessibili dietro login
 *********************************************/
 
-// pagine accessibili agli utenti
-Route::get('/', 'PrivateController@index')->name('home');
+// pagine accessibili agli utenti registrati
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/simple', 'SimpleController@index')->name('simple');
 
 // profilo personale
@@ -86,8 +87,14 @@ Route::middleware('role:admin')->name('admin.')->prefix('admin')->namespace('Adm
 });
  
 
-Route::get('{any?}', function () {
-    return redirect()->route('home')->with('alert-message', 'Pagina non presente.')->with('alert-type', 'warning'); // view('guest.home');
+//
+Route::get('/', function () {
+    return view('guest.home');
+});
+
+
+Route::get('/{any?}', function () {
+    return redirect()->route('dashboard')->with('alert-message', 'Pagina non presente.')->with('alert-type', 'warning'); // view('guest.home');
 })->where('any', '.*');
 
 
