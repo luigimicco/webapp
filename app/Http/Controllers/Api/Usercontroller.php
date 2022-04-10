@@ -38,7 +38,9 @@ class Usercontroller extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::with('userInfo')->find($id);
+        if (!$user) return response('', 404); // torno un codice 404 se non trovo il record
+        return response()->json($user);
     }
 
     /**

@@ -82,22 +82,22 @@ Route::middleware('role:admin')->name('admin.')->prefix('admin')->namespace('Adm
     Route::resource('templates', 'TemplateController');
 
     Route::get('/{any}', function () {
-        return abort(404);
+//        return abort(404);
+        return redirect()->route('dashboard')->with('alert-message', 'Pagina non presente.')->with('alert-type', 'warning'); // view('guest.home');
     });
 });
  
 
-//
-Route::get('/', function () {
+// rotte gestitre da Vue router
+Route::get('{any?}', function () {
     return view('guest.home');
-});
+})->where('any', '.*');
 
-
+/*
 Route::get('/{any?}', function () {
     return redirect()->route('dashboard')->with('alert-message', 'Pagina non presente.')->with('alert-type', 'warning'); // view('guest.home');
 })->where('any', '.*');
-
-
+*/
 
 
 

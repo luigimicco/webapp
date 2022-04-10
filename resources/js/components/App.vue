@@ -1,23 +1,24 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Titolo</div>
-
-                    <div class="card-body">
-                        Contenuto
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container-fluid px-0">
+		<Topbar />
+		<main class="col-12 my-4 content">
+			<router-view></router-view>
+		</main>
+	</div>
 </template>
 
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+import Topbar from "./Topbar.vue";
+
+export default {
+	name: "App",
+	components: { Topbar },
+	data() {
+		return {};
+	},
+    mounted() {
+        console.log('Component mounted.')
     }
+};
+
 </script>
