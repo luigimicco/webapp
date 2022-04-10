@@ -1,8 +1,6 @@
 <template>
-	<div id="loader" class="d-flex justify-content-center align-items-center">
-		<div class="spinner-grow text-primary" role="status"></div>
-		<div class="spinner-grow text-primary mx-2" role="status"></div>
-		<div class="spinner-grow text-primary" role="status"></div>
+	<div id="loader" class="spinner-border text-success" role="status">
+		<span class="sr-only">Loaing...</span>
 	</div>
 </template>
 
@@ -20,11 +18,14 @@ export default {
 	right: 0;
 	bottom: 0;
 	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	z-index: 1;
 
-	.spinner-grow {
-		width: 1.2rem;
-		height: 1.2rem;
+	.spinner-border {
+		width: 100px;
+		height: 100px;
 	}
 }
 </style>

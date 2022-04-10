@@ -39,13 +39,13 @@ class ContactController extends Controller
             return response()->json(['errors' => $validator->errors()]);
         };
 
-        $message = new Contact();
-        $message->fill($data);
-        $message->save();
+        $contact = new Contact();
+        $contact->fill($data);
+        $contact->save();
 
         $mail = new SendNewMail($data);
-        Mail::to(env('MAIL_ADMIN_ADDRESS'))->send($mail);
+        Mail::to(env('MAIL_ADMIN_ADDRESS'))->send($mail); // MAIL_ADMIN_ADDRESS è stata aggiunta nel file ENV
 
-        return response('Mail sent successfully', 204);
+        return response('Mail sent successfully', 204); // o return response('Mail received', 201)
     }
 }

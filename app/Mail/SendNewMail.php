@@ -18,9 +18,9 @@ class SendNewMail extends Mailable
      *
      * @return void
      */
-    public function __construct($_contact)
+    public function __construct($contact)
     {
-        $this->contact = $_contact;
+        $this->contact = $contact;
     }
 
     /**
