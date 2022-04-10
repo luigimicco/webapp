@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
-        <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height navbar-light bg-secondary">
-            <div class="container p-3">
-                @if (Route::has('login'))
-                <div class="top-right links font-weight-bold">
-                    @auth
-                        <a class="bg-dark p-2 round rounded" href="{{ url('/admin') }}">ADMIN DASHBOARD</a>
-                    @else
-                        <a class="bg-dark p-2" href="{{ route('login') }}">LOGIN</a>
-                        @if (Route::has('register'))
-                            <a class="bg-dark p-2" href="{{ route('register') }}">REGISTER</a>
-                        @endif
-                        <a class="bg-dark p-2" href="{{ route('contact') }}">CONTATTI</a>
-                    @endauth
-                </div>
-                @endif
-            </div>
-        </div>
-        
-        <div id="root"></div>
 
-        <script src="{{ asset('js/front.js') }}"></script>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ env('APP_NAME') }}</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- Importo Vue nel componente che usa #root --}}
+    <script src="{{ asset('js/front.js') }}" defer></script>
+
+    {{-- Importo lo stile --}}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css">
+</head>
+
+<body>
+    <div id="root">
+    </div>
+</body>
+
 </html>

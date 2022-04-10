@@ -3,5 +3,6 @@
     "/css/app.css": "/css/app.css",
     "/css/login.css": "/css/login.css",
     "/css/buttons.css": "/css/buttons.css",
-    "/js/commons.js": "/js/commons.js"
+    "/js/commons.js": "/js/commons.js",
+    "/js/front.js": "/js/front.js"
 }

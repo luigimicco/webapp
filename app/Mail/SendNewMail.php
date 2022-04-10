@@ -18,9 +18,9 @@ class SendNewMail extends Mailable
      *
      * @return void
      */
-    public function __construct($_contact)
+    public function __construct($contact)
     {
-        $this->contact = $_contact;
+        $this->contact = $contact;
     }
 
     /**
@@ -30,7 +30,8 @@ class SendNewMail extends Mailable
      */
     public function build()
     {
-        $contact = $this->contact;
-        return $this->view('email.body', compact('contact'));
+        // $contact = $this->contact;
+        // return $this->view('email.body', compact('contact'));
+        return $this->from($this->contact['email'])->markdown('mails.contact')->with(['contact' => $this->contact]);        
     }
 }

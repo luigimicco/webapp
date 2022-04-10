@@ -48,10 +48,10 @@ class UsersSeeder extends Seeder
         $new_user->permissions()->attach(3);
 
 
-        $roles_id = Role::pluck('id')->toArray();
-        unset($roles_id[0]);  // i casuali non possono essere admin
-        $permissions_id = Permission::pluck('id')->toArray();
-        unset($permissions_id[0]);  // i casuali non possono avere i permsssi completi
+        $roles_ids = Role::pluck('id')->toArray();
+        unset($roles_ids[0]);  // i casuali non possono essere admin
+        $permissions_ids = Permission::pluck('id')->toArray();
+        unset($permissions_ids[0]);  // i casuali non possono avere i permsssi completi
 
         for ($i = 0; $i < 15; $i++) {
             $new_user = new User();
@@ -62,9 +62,13 @@ class UsersSeeder extends Seeder
             $new_user->active = $faker->boolean();
             $new_user->save();
 
-            $new_user->roles()->attach(Arr::random($roles_id));
-            $new_user->permissions()->attach(Arr::random($permissions_id));
+            $new_user->roles()->attach(Arr::random($roles_ids));
+            $new_user->permissions()->attach(Arr::random($permissions_ids));
         }
 
     }
 }
+
+
+// $new_user->roles()-attach(Arr::random($roles_ids, rand(1, count($roles_ids)))); 
+// 
