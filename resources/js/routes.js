@@ -24,7 +24,7 @@ const router = new VueRouter({
         // pagina con parametro da chiamre con 
         // <router-link :to="{name: 'user-detail', params: { id: user.id} }">Dettaglio</router-link>
 
-        { path: '/users/:id', component: UserPage, name: 'user-detail' },
+        //{ path: '/users/:id', component: UserPage, name: 'user-detail' },
 
         // pagina 404 
         { path: '*', component: NotFoundPage, name: 'not-found' }

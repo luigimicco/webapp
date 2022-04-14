@@ -2,7 +2,7 @@
 	<section id="contacts" class="col-9 mx-auto">
 		<div class="container py-5 my-4">
 			<Loader v-if="isLoading" />
-			<div
+			<!-- div
 				class="alert d-flex justify-content-between align-items-center"
 				:class="`alert-${type}`"
 				role="alert"
@@ -15,7 +15,7 @@
 				<span @click="alert = !alert" class="h2 mb-0" role="button"
 					>&times;</span
 				>
-			</div>
+			</div -->
 			<h2 class="h1-responsive font-weight-bold text-center my-4">
 				Contact us
 			</h2>
@@ -92,7 +92,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="text-center text-md-left">
+					<div class="d-flex justify-content-center text-md-left mt-3">
 						<button class="btn btn-primary" @click="sendForm">Invia</button>
 					</div>
 					<div class="status"></div>

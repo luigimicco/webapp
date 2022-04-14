@@ -17,6 +17,18 @@ html body:not(#guest) {
   background-color: #f6f5ff;
 }
 
+body {
+  /*css for full size background image*/
+  background: url(https://source.unsplash.com/category/nature/1024x800) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+  opacity: 1;
+  transition: background 1.5s linear;
+  background-color: #fff;
+  color: #000;
+}
+
 * {
   margin: 0;
   padding: 0;

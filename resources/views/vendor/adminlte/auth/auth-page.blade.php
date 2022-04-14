@@ -19,12 +19,12 @@
 @section('body')
     <div class="container-fluid">
         <!-- Image and text -->
-        <nav class="navbar fixed-top navbar-light bg-light bg-white shadow-sm justify-content-between">
-            <a class="navbar-brand" href="/login">
-                <img src="{{ asset(config('adminlte.logo_img')) }}" class="{{ config('adminlte.logo_img_class') }}" height="30"> 
+        <nav class="navbar fixed-top navbar-light navbar-dark bg-dark shadow-sm justify-content-between">
+            <a class="navbar-brand mr-3" href="/login">
+                <img src="{{ asset(config('adminlte.logo_img')) }}" class="{{ config('adminlte.logo_img_class') }}  mr-3" height="50"> 
                 {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
             </a>
-            <a href="{{ config('adminlte.contact_url') }}" class="btn btn-link p-2">Contatti</a>
+            <a href="/" class="btn btn-link p-2">Home</a>
         </nav>
     </div>
 

@@ -1,9 +1,7 @@
 <template>
-	<section id="posts-list">
-		<div class="container-fluid pt-5">
+	<div class="container-fluid pt-5">
 
-		</div>
-	</section>
+	</div>
 </template>
 
 <script>
