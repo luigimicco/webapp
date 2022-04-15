@@ -63,4 +63,8 @@ export default {
 
 
 <style lang="scss" scoped>
+.carousel-control-prev i, .carousel-control-next i {
+  color:black;
+
+}
 </style>
