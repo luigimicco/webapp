@@ -3,7 +3,7 @@
     <ol class="carousel-indicators">
       <li v-for="(item, index) in items" :key="index" :class="{active : isCurrent(index) }" @click="setCurrent(index)"></li>
     </ol>
-    <div class="carousel-inner">
+    <div class="carousel-inner text-center">
       <div
         v-for="(item, index) in items"
         :key="index"
@@ -24,11 +24,11 @@
       </div>
     </div>
     <span class="carousel-control-prev" role="button" @click="prevSlide">
-      <span class="carousel-control-prev-icon"></span>
+      <i class="fa fa-solid fa-chevron-left fa-3x"></i>
       <span class="sr-only">Previous</span>
     </span>
     <span class="carousel-control-next" role="button" @click="nextSlide">
-      <span class="carousel-control-next-icon"></span>
+      <i class="fa fa-solid fa-chevron-right fa-3x"></i>
       <span class="sr-only">Next</span>
     </span>
   </div>

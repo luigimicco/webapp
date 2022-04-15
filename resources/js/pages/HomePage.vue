@@ -2,7 +2,7 @@
 	<div class="container-fluid pt-5">
     <main role="main">
 
-      <Slider :items="slider_data" class="mb-5"/>
+      <Slider :items="sliderData" class="mb-5"/>
 
       <!-- Marketing messaging and featurettes
       ================================================== -->
@@ -96,31 +96,31 @@ export default {
 	components: { Slider },
   data() {
 		return {
-      slider_data : [
+      sliderData : [
         {
           title: "Headline 1",
           caption: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere laboriosam illum adipisci? Minima laudantium velit repellat quia, iure voluptatem nemo. Quod debitis eaque beatae repellendus veritatis placeat praesentium voluptate consequuntur!",
-          img : "https://picsum.photos/seed/dolet/1519/512",
+          img : "https://picsum.photos/seed/dolet/1519/512?grayscale",
           button : {
-            url: "",
+            url: "#",
             caption: "Sign up today",
           }  
         },
         {
           title: "Headline 2",
           caption: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere laboriosam illum adipisci? Minima laudantium velit repellat quia, iure voluptatem nemo. Quod debitis eaque beatae repellendus veritatis placeat praesentium voluptate consequuntur!",
-          img : "https://picsum.photos/seed/lorem/1519/512",
+          img : "https://picsum.photos/seed/lorem/1519/512?grayscale",
           button : {
-            url: "",
+            url: "#",
             caption: "Try now",
           } 
         },
         {
           title: "Headline 3",
           caption: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere laboriosam illum adipisci? Minima laudantium velit repellat quia, iure voluptatem nemo. Quod debitis eaque beatae repellendus veritatis placeat praesentium voluptate consequuntur!",
-          img : "https://picsum.photos/seed/ipsum/1519/512",
+          img : "https://picsum.photos/seed/ipsum/1519/512?grayscale",
           button : {
-            url: "",
+            url: "#",
             caption: "Only today",
           } 
         },

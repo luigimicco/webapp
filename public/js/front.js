@@ -2783,28 +2783,28 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      slider_data: [{
+      sliderData: [{
         title: "Headline 1",
         caption: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere laboriosam illum adipisci? Minima laudantium velit repellat quia, iure voluptatem nemo. Quod debitis eaque beatae repellendus veritatis placeat praesentium voluptate consequuntur!",
-        img: "https://picsum.photos/seed/dolet/1519/512",
+        img: "https://picsum.photos/seed/dolet/1519/512?grayscale",
         button: {
-          url: "",
+          url: "#",
           caption: "Sign up today"
         }
       }, {
         title: "Headline 2",
         caption: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere laboriosam illum adipisci? Minima laudantium velit repellat quia, iure voluptatem nemo. Quod debitis eaque beatae repellendus veritatis placeat praesentium voluptate consequuntur!",
-        img: "https://picsum.photos/seed/lorem/1519/512",
+        img: "https://picsum.photos/seed/lorem/1519/512?grayscale",
         button: {
-          url: "",
+          url: "#",
           caption: "Try now"
         }
       }, {
         title: "Headline 3",
         caption: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere laboriosam illum adipisci? Minima laudantium velit repellat quia, iure voluptatem nemo. Quod debitis eaque beatae repellendus veritatis placeat praesentium voluptate consequuntur!",
-        img: "https://picsum.photos/seed/ipsum/1519/512",
+        img: "https://picsum.photos/seed/ipsum/1519/512?grayscale",
         button: {
-          url: "",
+          url: "#",
           caption: "Only today"
         }
       }]
@@ -39261,7 +39261,7 @@ var render = function () {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "carousel-inner" },
+      { staticClass: "carousel-inner text-center" },
       _vm._l(_vm.items, function (item, index) {
         return _c(
           "div",
@@ -39305,7 +39305,7 @@ var render = function () {
         on: { click: _vm.prevSlide },
       },
       [
-        _c("span", { staticClass: "carousel-control-prev-icon" }),
+        _c("i", { staticClass: "fa fa-solid fa-chevron-left fa-3x" }),
         _vm._v(" "),
         _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")]),
       ]
@@ -39319,7 +39319,7 @@ var render = function () {
         on: { click: _vm.nextSlide },
       },
       [
-        _c("span", { staticClass: "carousel-control-next-icon" }),
+        _c("i", { staticClass: "fa fa-solid fa-chevron-right fa-3x" }),
         _vm._v(" "),
         _c("span", { staticClass: "sr-only" }, [_vm._v("Next")]),
       ]
@@ -39738,10 +39738,7 @@ var render = function () {
       "main",
       { attrs: { role: "main" } },
       [
-        _c("Slider", {
-          staticClass: "mb-5",
-          attrs: { items: _vm.slider_data },
-        }),
+        _c("Slider", { staticClass: "mb-5", attrs: { items: _vm.sliderData } }),
         _vm._v(" "),
         _vm._m(0),
         _vm._v(" "),
