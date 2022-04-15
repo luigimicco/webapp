@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import Loader from "../Loader.vue";
+import Loader from "../components/Loader.vue";
 import { isEmpty } from "lodash";  // importo solo la funzione che mi serve
 
 export default {

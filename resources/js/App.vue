@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Topbar from "./Topbar.vue";
+import Topbar from "./components/Topbar.vue";
 
 export default {
 	name: "App",

@@ -4,14 +4,14 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 // Componenti
-import HomePage from './components/pages/Homepage.vue';
-import ContactPage from './components/pages/ContactPage.vue';
-import NotFoundPage from './components/pages/NotFoundPage.vue';
-//import PostDetailPage from './components/pages/PostDetailPage.vue';
-//import CategoriesListPage from './components/categories/CategoriesListPage.vue';
-//import CategoryDetailPage from './components/categories/CategoryDetailPage.vue';
-//import TagsListPage from './components/tags/TagsListPage.vue';
-//import TagDetailPage from './components/tags/TagDetailPage.vue';
+import HomePage from './pages/Homepage.vue';
+import ContactPage from './pages/ContactPage.vue';
+import NotFoundPage from './pages/NotFoundPage.vue';
+//import PostDetailPage from './pages/PostDetailPage.vue';
+//import CategoriesListPage from './categories/CategoriesListPage.vue';
+//import CategoryDetailPage from './categories/CategoryDetailPage.vue';
+//import TagsListPage from './tags/TagsListPage.vue';
+//import TagDetailPage from './tags/TagDetailPage.vue';
 
 // Rotte
 const router = new VueRouter({

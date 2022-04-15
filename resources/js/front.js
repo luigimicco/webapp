@@ -9,7 +9,7 @@
  window.Vue = require('vue');
  
  import Axios from 'axios';
- import App from './components/App.vue';
+ import App from './App.vue';
  import router from './routes.js';
  
  const root = new Vue({
