@@ -6,9 +6,9 @@
 				class="alert d-flex justify-content-between align-items-center"
 				:class="`alert-${type}`"
 				role="alert"
-				v-if="alert"
+				v-if="alert && !isLoading"
 			>
-				<span v-if="!hasErrors || alertMessage">{{ alertMessage }}</span>
+				<span v-if="alertMessage">{{ alertMessage }}</span>
 				<ul v-if="hasErrors" class="mb-0 pl-4">
 					<li v-for="(error, key) in errors" :key="key">{{ error }}</li>
 				</ul>
@@ -17,7 +17,7 @@
 				>
 			</div>
 			<h2 class="h1-responsive font-weight-bold text-center my-4">
-				Contact us
+				Contattaci
 			</h2>
 			<p class="text-center w-responsive mx-auto mb-5">
 				Hai qualche domanda? Non esitare a contattarci direttamente. Il nostro
@@ -92,7 +92,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="text-center text-md-left">
+					<div class="d-flex justify-content-center text-md-left mt-3">
 						<button class="btn btn-primary" @click="sendForm">Invia</button>
 					</div>
 					<div class="status"></div>
@@ -119,7 +119,7 @@
 </template>
 
 <script>
-import Loader from "../Loader.vue";
+import Loader from "../components/Loader.vue";
 import { isEmpty } from "lodash";  // importo solo la funzione che mi serve
 
 export default {
@@ -148,7 +148,7 @@ export default {
 	},
 	methods: {
 		validateForm() {
-			// TODO: Validazione
+			// Validazione
 			const errors = {}; // ! oggetto vuoto inizialmente 
 
 			if (!this.form.name.trim()) errors.name = "Il nome non è valido.";
@@ -164,7 +164,8 @@ export default {
 				errors.email = "La mail non è valida";
 
 			this.errors = errors;
-			this.alert = true;
+			// this.alert = true;
+
 			// console.log(this.errors);
 		},
 		sendForm() {
@@ -174,7 +175,7 @@ export default {
 			this.validateForm();
 
 			// Controllo se ci sono errori per mostrare un alert diverso
-			!isEmpty(this.errors) ? (this.type = "danger") : (this.type = "success");
+			// !isEmpty(this.errors) ? (this.type = "danger") : (this.type = "success");
 
 			// * Creo una variabile per recuperare i params
 			// Posso usare anche lo spread
@@ -189,7 +190,7 @@ export default {
 				// * Chiamo axios in POST per mandare i dati e gli passo params
 				// potrei passare direttamente this.form perchè i campi COINCIDONO
 				axios
-					.post("api/contact", params)
+					.post("http://127.0.0.1:8000/api/contacts", params)
 					.then((res) => {
 						// Controllo se comunque mi arrivano errori DAL BACKEND
 						if (res.data.errors) {
@@ -201,24 +202,43 @@ export default {
 							if (subject) errors.subject = subject[0];
 							if (message) errors.message = message[0];
 							this.errors = errors;
+							this.type = "danger";
+							this.alert = true;
 						} else {
 							this.form.name = "";
 							this.form.email = "";
 							this.form.subject = "";
 							this.form.message = "";
-							this.alertMessage = "Messaggio inviato con successo.";
+							//this.alertMessage = "Messaggio inviato con successo.";
+							this.alert = false;
+							
+							// modal con messaggio ok
+							this.$swal.fire({
+									animation: false,
+									icon: 'success',
+									title: 'Messaggio inviato con successo',
+									type: 'success',
+									timer: 3000,
+									showConfirmButton: false,
+							});							
 						}
 					})
 					.catch((err) => {
 						// console.error(err.response.status);
-
-						this.type = "danger";
-						this.errors = {
-							error: "Messaggio non inviato. Si è verificato un errore.",
-						};
+						this.alert = false;
+						// modal con messaggio ko
+						this.$swal.fire({
+								animation: false,
+								icon: 'warning',
+								title: 'Messaggio non inviato. Si è verificato un errore. Riprovare più tardi',
+								type: 'warning',
+								showConfirmButton: false,
+                showCancelButton: true,
+                //cancelButtonColor: '#d33',
+                cancelButtonText: 'Ok',								
+						});	
 					})
 					.then(() => {
-						this.alert = true;
 						this.isLoading = false;
 					});
 			}

@@ -1,7 +1,7 @@
 <template>
 	<div class="full-height-minus-navbar flex-center text-muted flex-column">
 		<h3>404 | Not Found</h3>
-		<button class="btn btn-info" @click="$router.back()">Indietro</button>
+		<button class="btn btn-info mt-3" @click="$router.back()">Indietro</button>
 	</div>
 </template>
 

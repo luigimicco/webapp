@@ -48,7 +48,7 @@ return [
     */
 
     'logo' => '<b>Web</b>App',
-    'logo_img' => 'vendor/adminlte/dist/img/logo.png',
+    'logo_img' => 'images/logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -197,7 +197,6 @@ return [
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
     'profile_url' => false,
-    'contact_url' => 'contact',
 
     /*
     |--------------------------------------------------------------------------

@@ -9,9 +9,14 @@
  window.Vue = require('vue');
  
  import Axios from 'axios';
- import App from './components/App.vue';
+ import App from './App.vue';
  import router from './routes.js';
- 
+
+// Sweetalert2
+ import VueSweetalert2 from 'vue-sweetalert2';
+ import 'sweetalert2/dist/sweetalert2.min.css';
+ Vue.use(VueSweetalert2);
+
  const root = new Vue({
      el: '#root',
      router: router,
