@@ -2399,16 +2399,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Slider",
   props: ["items"],
   data: function data() {
     return {
-      currentSlide: 0
+      currentSlide: 0,
+      timerId: null
     };
   },
   methods: {
@@ -2423,7 +2420,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     prevSlide: function prevSlide() {
       this.currentSlide = this.currentSlide > 0 ? this.currentSlide - 1 : this.items.length - 1;
+    },
+    startAutoPlay: function startAutoPlay() {
+      this.timerId = setInterval(this.nextSlide, 2000);
+    },
+    stopAutoPlay: function stopAutoPlay() {
+      clearInterval(this.timerId);
     }
+  },
+  mounted: function mounted() {
+    this.startAutoPlay();
   }
 });
 
@@ -2719,7 +2725,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             _this.form.subject = "";
             _this.form.message = ""; //this.alertMessage = "Messaggio inviato con successo.";
 
-            _this.alert = false;
+            _this.alert = false; // modal con messaggio ok
 
             _this.$swal.fire({
               animation: false,
@@ -2732,7 +2738,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         })["catch"](function (err) {
           // console.error(err.response.status);
-          _this.alert = false;
+          _this.alert = false; // modal con messaggio ko
 
           _this.$swal.fire({
             animation: false,
@@ -39466,90 +39472,100 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "carousel slide" }, [
-    _c(
-      "ol",
-      { staticClass: "carousel-indicators" },
-      _vm._l(_vm.items, function (item, index) {
-        return _c("li", {
-          key: index,
-          class: { active: _vm.isCurrent(index) },
-          on: {
-            click: function ($event) {
-              return _vm.setCurrent(index)
-            },
-          },
-        })
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "carousel-inner text-center" },
-      _vm._l(_vm.items, function (item, index) {
-        return _c(
-          "div",
-          {
+  return _c(
+    "div",
+    {
+      staticClass: "carousel slide",
+      on: { mouseenter: _vm.stopAutoPlay, mouseleave: _vm.startAutoPlay },
+    },
+    [
+      _c(
+        "ol",
+        { staticClass: "carousel-indicators" },
+        _vm._l(_vm.items, function (item, index) {
+          return _c("li", {
             key: index,
-            staticClass: "carousel-item",
-            class: { active: _vm.currentSlide == index },
-          },
-          [
-            _c("img", { staticClass: "first-slide", attrs: { src: item.img } }),
-            _vm._v(" "),
-            _c("div", { staticClass: "container" }, [
-              _c("div", { staticClass: "carousel-caption text-left" }, [
-                _c("h1", [_vm._v(_vm._s(item.title))]),
-                _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(item.caption))]),
-                _vm._v(" "),
-                _c("p", [
+            class: { active: _vm.isCurrent(index) },
+            on: {
+              click: function ($event) {
+                return _vm.setCurrent(index)
+              },
+            },
+          })
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "carousel-inner text-center" },
+        _vm._l(_vm.items, function (item, index) {
+          return _c(
+            "div",
+            {
+              key: index,
+              staticClass: "carousel-item",
+              class: { active: _vm.currentSlide == index },
+            },
+            [
+              _c("img", {
+                staticClass: "d-block w-100",
+                attrs: { src: item.img },
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "container" }, [
+                _c("div", { staticClass: "carousel-caption text-left" }, [
+                  _c("h1", [_vm._v(_vm._s(item.title))]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "d-none d-md-block" }, [
+                    _vm._v(_vm._s(item.caption)),
+                  ]),
+                  _vm._v(" "),
                   _c(
                     "a",
                     {
-                      staticClass: "btn btn-lg btn-primary",
+                      staticClass: "btn btn-lg btn-primary d-none d-md-inline",
                       attrs: { href: item.button.url, role: "button" },
                     },
                     [_vm._v(_vm._s(item.button.caption))]
                   ),
                 ]),
               ]),
-            ]),
-          ]
-        )
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _c(
-      "span",
-      {
-        staticClass: "carousel-control-prev",
-        attrs: { role: "button" },
-        on: { click: _vm.prevSlide },
-      },
-      [
-        _c("i", { staticClass: "fa fa-solid fa-chevron-left fa-3x" }),
-        _vm._v(" "),
-        _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")]),
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "span",
-      {
-        staticClass: "carousel-control-next",
-        attrs: { role: "button" },
-        on: { click: _vm.nextSlide },
-      },
-      [
-        _c("i", { staticClass: "fa fa-solid fa-chevron-right fa-3x" }),
-        _vm._v(" "),
-        _c("span", { staticClass: "sr-only" }, [_vm._v("Next")]),
-      ]
-    ),
-  ])
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass: "carousel-control-prev",
+          attrs: { role: "button" },
+          on: { click: _vm.prevSlide },
+        },
+        [
+          _c("i", { staticClass: "fa fa-solid fa-chevron-left fa-3x" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "sr-only" }, [_vm._v("Previous")]),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass: "carousel-control-next",
+          attrs: { role: "button" },
+          on: { click: _vm.nextSlide },
+        },
+        [
+          _c("i", { staticClass: "fa fa-solid fa-chevron-right fa-3x" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "sr-only" }, [_vm._v("Next")]),
+        ]
+      ),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39575,9 +39591,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("header", [
     _c("nav", { staticClass: "navbar navbar-expand-md navbar-dark bg-dark" }, [
-      _c("img", {
-        attrs: { src: "vendor/adminlte/dist/img/logo.png", alt: "webapp logo" },
-      }),
+      _c("img", { attrs: { src: "images/logo.png", alt: "webapp logo" } }),
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
@@ -39617,7 +39631,7 @@ var render = function () {
                     staticClass: "nav-link",
                     attrs: { to: { name: "contacts" } },
                   },
-                  [_vm._v("Contacts")]
+                  [_vm._v("Contatti")]
                 ),
               ],
               1
@@ -39658,7 +39672,7 @@ var staticRenderFns = [
     return _c("ul", { staticClass: "navbar-nav ml-3" }, [
       _c("li", { staticClass: "nav-item" }, [
         _c("a", { staticClass: "nav-link", attrs: { href: "/login" } }, [
-          _vm._v("Login"),
+          _vm._v("Area riservata"),
         ]),
       ]),
     ])

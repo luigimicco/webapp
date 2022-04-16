@@ -212,6 +212,7 @@ export default {
 							//this.alertMessage = "Messaggio inviato con successo.";
 							this.alert = false;
 							
+							// modal con messaggio ok
 							this.$swal.fire({
 									animation: false,
 									icon: 'success',
@@ -225,6 +226,7 @@ export default {
 					.catch((err) => {
 						// console.error(err.response.status);
 						this.alert = false;
+						// modal con messaggio ko
 						this.$swal.fire({
 								animation: false,
 								icon: 'warning',

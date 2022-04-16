@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel slide">
+  <div class="carousel slide" @mouseenter="stopAutoPlay" @mouseleave="startAutoPlay">
     <ol class="carousel-indicators">
       <li v-for="(item, index) in items" :key="index" :class="{active : isCurrent(index) }" @click="setCurrent(index)"></li>
     </ol>
@@ -9,16 +9,12 @@
         :key="index"
         class="carousel-item" :class="{active : currentSlide == index }"
       >
-        <img class="first-slide" :src="item.img" />
+        <img class="d-block w-100" :src="item.img" />
         <div class="container">
           <div class="carousel-caption text-left">
             <h1>{{ item.title }}</h1>
-            <p>{{ item.caption }}</p>
-            <p>
-              <a class="btn btn-lg btn-primary" :href="item.button.url" role="button"
-                >{{item.button.caption}}</a
-              >
-            </p>
+            <p class="d-none d-md-block">{{ item.caption }}</p>
+            <a class="btn btn-lg btn-primary d-none d-md-inline" :href="item.button.url" role="button">{{item.button.caption}}</a>
           </div>
         </div>
       </div>
@@ -41,6 +37,7 @@ export default {
   data() {
 		return {
       currentSlide : 0,
+      timerId: null,
     };
   },  
   methods: {
@@ -56,7 +53,15 @@ export default {
     prevSlide() {
       this.currentSlide = this.currentSlide > 0 ? (this.currentSlide -1) : (this.items.length - 1);
     },
-
+    startAutoPlay() {
+      this.timerId = setInterval(this.nextSlide, 2000);
+    },
+    stopAutoPlay() {
+      clearInterval(this.timerId);
+    }
+  },
+  mounted() {
+    this.startAutoPlay();
   },
 };
 </script>
