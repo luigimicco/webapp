@@ -19,6 +19,14 @@ use Illuminate\Support\Facades\Artisan;
  Pagini pubbliche
 *********************************************/
 
+// contact test
+Route::get('contact_test', function () {
+    $message = App\Models\Contact::findOrFail(1);
+    return new App\Mail\SendNewMail($message);
+});
+
+
+// coda email test
 Route::get('email-test', function(){
   
     $details = array(

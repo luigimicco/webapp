@@ -32,6 +32,7 @@ class SendEmailQueued extends Mailable
     public function build()
     {
         $mail = (object) $this->mail;
-        return $this->subject($mail->title)->view('mails.template', compact('mail'));
+        return $this->subject($mail->title)
+                    ->view('mails.template', compact('mail'));
     }
 }
