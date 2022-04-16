@@ -75,7 +75,7 @@ export default {
         {
           title: "Headline 1",
           caption: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere laboriosam illum adipisci? Minima laudantium velit repellat quia, iure voluptatem nemo. Quod debitis eaque beatae repellendus veritatis placeat praesentium voluptate consequuntur!",
-          img : "https://picsum.photos/seed/dolet/1519/512?grayscale",
+          img : "https://picsum.photos/seed/dolet/1519/512",
           button : {
             url: "#",
             caption: "Sign up today",
@@ -84,7 +84,7 @@ export default {
         {
           title: "Headline 2",
           caption: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere laboriosam illum adipisci? Minima laudantium velit repellat quia, iure voluptatem nemo. Quod debitis eaque beatae repellendus veritatis placeat praesentium voluptate consequuntur!",
-          img : "https://picsum.photos/seed/lorem/1519/512?grayscale",
+          img : "https://picsum.photos/seed/lorem/1519/512",
           button : {
             url: "#",
             caption: "Try now",
@@ -93,7 +93,7 @@ export default {
         {
           title: "Headline 3",
           caption: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere laboriosam illum adipisci? Minima laudantium velit repellat quia, iure voluptatem nemo. Quod debitis eaque beatae repellendus veritatis placeat praesentium voluptate consequuntur!",
-          img : "https://picsum.photos/seed/ipsum/1519/512?grayscale",
+          img : "https://picsum.photos/seed/ipsum/1519/512",
           button : {
             url: "#",
             caption: "Only today",

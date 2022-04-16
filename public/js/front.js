@@ -2399,6 +2399,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Slider",
   props: ["items"],
@@ -2848,7 +2863,7 @@ __webpack_require__.r(__webpack_exports__);
       sliderData: [{
         title: "Headline 1",
         caption: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere laboriosam illum adipisci? Minima laudantium velit repellat quia, iure voluptatem nemo. Quod debitis eaque beatae repellendus veritatis placeat praesentium voluptate consequuntur!",
-        img: "https://picsum.photos/seed/dolet/1519/512?grayscale",
+        img: "https://picsum.photos/seed/dolet/1519/512",
         button: {
           url: "#",
           caption: "Sign up today"
@@ -2856,7 +2871,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         title: "Headline 2",
         caption: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere laboriosam illum adipisci? Minima laudantium velit repellat quia, iure voluptatem nemo. Quod debitis eaque beatae repellendus veritatis placeat praesentium voluptate consequuntur!",
-        img: "https://picsum.photos/seed/lorem/1519/512?grayscale",
+        img: "https://picsum.photos/seed/lorem/1519/512",
         button: {
           url: "#",
           caption: "Try now"
@@ -2864,7 +2879,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         title: "Headline 3",
         caption: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere laboriosam illum adipisci? Minima laudantium velit repellat quia, iure voluptatem nemo. Quod debitis eaque beatae repellendus veritatis placeat praesentium voluptate consequuntur!",
-        img: "https://picsum.photos/seed/ipsum/1519/512?grayscale",
+        img: "https://picsum.photos/seed/ipsum/1519/512",
         button: {
           url: "#",
           caption: "Only today"
@@ -7321,7 +7336,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".carousel-control-prev i[data-v-872262e8], .carousel-control-next i[data-v-872262e8] {\n  color: black;\n}", ""]);
+exports.push([module.i, ".carousel-control-prev i[data-v-872262e8],\n.carousel-control-next i[data-v-872262e8] {\n  color: black;\n}\n.carousel-inner[data-v-872262e8]::after {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.carousel-inner .carousel-caption[data-v-872262e8] {\n  z-index: 1;\n}", ""]);
 
 // exports
 
