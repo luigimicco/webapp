@@ -25,10 +25,14 @@ class ContactController extends Controller
         $validator = Validator::make(
             $data,
             [
+                'name' => 'required',
+                'subject' => 'required',
                 'email' => 'required|email',
                 'message' => 'required'
             ],
             [
+                'name.required' => 'Il nome è obbligatorio.',
+                'subject.required' => 'L\'oggetto è obbligatorio.',
                 'email.required' => 'La mail è obbligatoria.',
                 'email.email' => 'L\'indirizzo email non è valido.',
                 'message.required' => 'Il testo del messaggio è obbligatorio.'

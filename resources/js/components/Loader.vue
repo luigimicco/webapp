@@ -1,6 +1,8 @@
 <template>
-	<div id="loader" class="spinner-border text-success" role="status">
-		<span class="sr-only">Loading...</span>
+	<div id="loader">
+		<span class="spinner-border text-success" role="status">
+			<span class="sr-only">Loading...</span>
+		</span>
 	</div>
 </template>
 

@@ -32,6 +32,6 @@ class SendNewMail extends Mailable
     {
         // $contact = $this->contact;
         // return $this->view('email.body', compact('contact'));
-        return $this->from($this->contact['email'])->markdown('mails.contact')->with(['contact' => $this->contact]);        
+        return $this->from($this->contact['email'])->subject($this->contact['subject'])->markdown('mails.contact')->with(['contact' => $this->contact]);        
     }
 }
