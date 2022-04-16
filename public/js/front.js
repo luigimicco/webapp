@@ -2717,7 +2717,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.isLoading = true; // * Chiamo axios in POST per mandare i dati e gli passo params
         // potrei passare direttamente this.form perchè i campi COINCIDONO
 
-        axios.post("http://127.0.0.1:8000/api/contacts", params).then(function (res) {
+        axios.post("./api/contact", params).then(function (res) {
           // Controllo se comunque mi arrivano errori DAL BACKEND
           if (res.data.errors) {
             // Prendo gli errori DA LARAVEL e li metto comunque dentro errors

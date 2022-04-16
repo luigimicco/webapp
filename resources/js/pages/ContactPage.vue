@@ -190,7 +190,7 @@ export default {
 				// * Chiamo axios in POST per mandare i dati e gli passo params
 				// potrei passare direttamente this.form perchè i campi COINCIDONO
 				axios
-					.post("http://127.0.0.1:8000/api/contacts", params)
+					.post("./api/contact", params)
 					.then((res) => {
 						// Controllo se comunque mi arrivano errori DAL BACKEND
 						if (res.data.errors) {
