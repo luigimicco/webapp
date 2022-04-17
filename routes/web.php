@@ -16,41 +16,11 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 /********************************************
- Pagini pubbliche
+ Pagine pubbliche
 *********************************************/
-
-// contact test
-Route::get('contact_test', function () {
-    $message = App\Models\Contact::findOrFail(1);
-    return new App\Mail\SendNewMail($message);
-});
-
-
-// coda email test
-Route::get('email-test', function(){
-  
-    $details = array(
-        'email' => 'your_email@gmail.com',
-        'title' => 'Titolo messaggio',
-        'body' => 'prova di messaggio',
-        'template' => 'Prova'
-    );
-  
-    dispatch(new App\Jobs\EmailQueueJob($details));
-  
-    dd('done');
-});
-
 
 Route::get('/contact', 'ContactController@index')->name('contact');
 Route::post('/contact', 'ContactController@send')->name('contact.send');
-
-
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
 
 Auth::routes(['register' => true]);
 
@@ -65,13 +35,6 @@ Route::get('/simple', 'SimpleController@index')->name('simple');
 // profilo personale
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::patch('/profile/update', 'ProfileController@update')->name('profile.update');
-
-/*
-Route::put('/admin/acp', function () {
-    //
-})->middleware('role:admin');
-*/
-
 
 /********************************************
  Pagini accessibili solo ad admin
@@ -89,6 +52,33 @@ Route::middleware('role:admin')->name('admin.')->prefix('admin')->namespace('Adm
     Route::resource('permissions', 'PermissionController');
     Route::resource('templates', 'TemplateController');
 
+
+    // testa la gestione delle coda di email
+    Route::get('email-test', function(){
+    
+        $details = array(
+            'email' => 'your_email@gmail.com',
+            'title' => 'Titolo messaggio',
+            'body' => 'prova di messaggio',
+            'template' => 'Prova'
+        );
+    
+        dispatch(new App\Jobs\EmailQueueJob($details));
+    
+        dd('done');
+    });
+
+    // tsta il modello susato per l'invio del contattp
+    Route::get('testcontact', function () {
+        $message = new  App\Models\Contact;
+        $message->name = "Rossi Mario";
+        $message->email= "info@nomail.com";
+        $message->subject = "Test template per contatto";
+        $message->message = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam nihil nam commodi vitae optio quidem consectetur atque in repellat! Reiciendis, corporis nisi quis error sint laudantium dignissimos totam quas quia!";
+
+        return new App\Mail\SendNewMail($message);
+    });
+
     Route::get('/{any}', function () {
 //        return abort(404);
         return redirect()->route('dashboard')->with('alert-message', 'Pagina non presente.')->with('alert-type', 'warning'); // view('guest.home');
@@ -96,7 +86,7 @@ Route::middleware('role:admin')->name('admin.')->prefix('admin')->namespace('Adm
 });
  
 
-// rotte gestitre da Vue router
+// rotte gestite da Vue router
 Route::get('{any?}', function () {
     return view('guest.home');
 })->where('any', '.*');
