@@ -26,7 +26,18 @@
   <a class="btn btn-primary btn-big " href="templates">
     <i class="fas fa-envelope"></i>
     <span class="caption">Modelli email</span>
-  </a>   
+  </a>
+  
+  <hr>
+  <a class="btn btn-success btn-big " href="testcontact">
+    <i class="fas fa-envelope"></i>
+    <span class="caption">Test contatti</span>
+  </a>
+  <a class="btn btn-success btn-big " href="email-test">
+    <i class="fas fa-envelope-square"></i>
+    <span class="caption">Test coda email</span>
+  </a>
+
   <hr>
   <p>Comandi Artisan</p>
   <a class="btn btn-warning btn-big " href="artisan/migrate">
@@ -52,6 +63,3 @@
     <link rel="stylesheet" href="/css/buttons.css">
 @stop
 
-@section('js')
-    <script src="{{ asset('js/popup-message.js') }}"></script>
-@stop
