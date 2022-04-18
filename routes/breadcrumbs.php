@@ -39,7 +39,7 @@ Breadcrumbs::macro('resource', function (string $parent, string $name, string $t
 
 
 // Home
-Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
     $trail->push('Bacheca', route('dashboard'));
 });
 

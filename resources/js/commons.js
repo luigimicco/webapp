@@ -40,29 +40,26 @@ $(function () {
                 if (result.value) {
 
                     // if double confirm
-                    if (doubleconfirm) {
+                    if (!doubleconfirm) 
 
-                        Swal.fire({
-                            title: 'Confermare la cancellazione',
-                            html: "Per confermare la cancellazione digita la parola <b>ESEGUI</b>",
-                            input: 'text',
-                            type: 'warning',
-                            inputPlaceholder: 'ESEGUI',
-                            showCancelButton: true,
-                            confirmButtonText: 'Conferma',
-                            cancelButtonText: 'Annulla',
-                            showLoaderOnConfirm: true,
-                            allowOutsideClick: () => !Swal.isLoading(),
-                            preConfirm: (txt) => {
-                                return (txt.toUpperCase() == "ESEGUI");
-                            },
+                    Swal.fire({
+                        title: 'Confermare la cancellazione',
+                        html: "Per confermare la cancellazione digita la parola <b>ESEGUI</b>",
+                        input: 'text',
+                        type: 'warning',
+                        inputPlaceholder: 'ESEGUI',
+                        showCancelButton: true,
+                        confirmButtonText: 'Conferma',
+                        cancelButtonText: 'Annulla',
+                        showLoaderOnConfirm: true,
+                        allowOutsideClick: () => !Swal.isLoading(),
+                        preConfirm: (txt) => {
+                            return (txt.toUpperCase() == "ESEGUI");
+                        },
 
-                        }).then((result) => {
-                            form.submit();
-                        })
-                    } else {
-                        form.submit();
-                    }
+                    }).then((result) => {
+                        if (result.value) form.submit();
+                    })
 
                 }
             })
